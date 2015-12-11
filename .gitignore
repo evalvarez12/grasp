@@ -1,0 +1,10 @@
+#DATABASES
+*.db
+
+#TXT
+*.txt
+
+
+#PYTHON VIRTUAL MACHINE
+*.pyc
+
