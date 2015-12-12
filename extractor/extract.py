@@ -3,7 +3,7 @@ symbols = [",", ".", ";", ":", "'", '"', "(", ")", '/', "&","?", "!"]
 
 def processFile(filename) :
     with open(filename, 'r') as data :
-        return process(data)
+        return process(data.read())
     #except EnvironmentError : 
         #print "ERROR: Can't load file"
         #return None
@@ -22,6 +22,12 @@ def process(data) :
 def processWord(word) :
     if word.count("-") :
         extra_words = word.split("-")
+        words = []
+        for i in extra_words :
+            words += processWord(i)
+        return words
+    elif word.count("\n") :
+        extra_words = word.split("\n")
         words = []
         for i in extra_words :
             words += processWord(i)
