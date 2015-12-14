@@ -1,0 +1,9 @@
+language: phython
+
+python:
+  - "2.6"
+  - "2.7"
+
+script: 
+  - python extractor/extract_test.py
+  - python extractor/db_test.py
