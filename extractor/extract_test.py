@@ -5,22 +5,25 @@ import unittest
 class TestExtract(unittest.TestCase) :
     
     def test1(self) :
-	self.assertEqual(ext.process("word1 word2"),["word1","word2"])
+	self.assertEqual(ext.processLine("word1 word2"),["word1","word2"])
 
-    def test1(self) :
-	self.assertEqual(ext.process("(word?!)"),["word"])
+    def test2(self) :
+	self.assertEqual(ext.processLine("(word?!)"),["word"])
 	
-    def test1(self) :
-	self.assertEqual(ext.process(" words ?"),["words"])
+    def test3(self) :
+	self.assertEqual(ext.processLine(" words ?"),["words"])
 
-    def test1(self) :
-	self.assertEqual(ext.process("this is a 23241"),["this", "is", "a", "#"])
+    def test4(self) :
+	self.assertEqual(ext.processLine("this is a 23241"),["this", "is", "a", "#"])
 
-    def test1(self) :
-	self.assertEqual(ext.process("some-thing"),["some", "thing"])
+    def test5(self) :
+	self.assertEqual(ext.processLine("some-thing"),["some", "thing"])
 
-    def test1(self) :
-	self.assertEqual(ext.process(" another-thing ! "),["another", "thing"])	
+    def test6(self) :
+	self.assertEqual(ext.processLine(" another-thing ! "),["another", "thing"])
+	
+    def test7(self) :
+	self.assertEqual(ext.processLine("<some-html-code>"),[])		
 
 
 if __name__ == '__main__':

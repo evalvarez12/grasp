@@ -3,14 +3,19 @@ symbols = [",", ".", ";", ":", "'", '"', "(", ")", '/', "&","?", "!"]
 
 def processFile(filename) :
     with open(filename, 'r') as data :
-        return process(data.read())
+        return processText(data.read())
     #except EnvironmentError : 
         #print "ERROR: Can't load file"
         #return None
   
+def processText(data) :
+    lines = data.split("\n")
+    processed_lines = []
+    for i in lines :
+        processed_lines += processLine(i)    
+    return processed_lines  
   
-  
-def process(data) :
+def processLine(data) :
     words = data.split(" ")
     processed_words = []
     for i in words :
@@ -20,14 +25,12 @@ def process(data) :
 
 
 def processWord(word) :
-    if word.count("-") :
+    if word.count('<') :
+        start = word.find('<')
+        end = word.find('>') + 1
+        return processWord(word[:start] + word[end:])
+    elif word.count("-") :
         extra_words = word.split("-")
-        words = []
-        for i in extra_words :
-            words += processWord(i)
-        return words
-    elif word.count("\n") :
-        extra_words = word.split("\n")
         words = []
         for i in extra_words :
             words += processWord(i)
