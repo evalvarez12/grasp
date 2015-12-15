@@ -23,7 +23,10 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(ext.processLine(" another-thing ! "),["another", "thing"])
 	
     def test7(self) :
-	self.assertEqual(ext.processLine("<some-html-code>"),[])		
+	self.assertEqual(ext.processLine("<some-html-code>"),[])
+    
+    def test8(self) :
+	self.assertEqual(ext.processLine("some<trash>thing"),["something"])	
 
 
 if __name__ == '__main__':
