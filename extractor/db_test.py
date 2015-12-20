@@ -2,6 +2,7 @@ import db as db
 import unittest
 import extract as ext
 import sqlite3 as lite
+import tree as tr
 
 
 text = "Some test text to test the text count in a test text count"
@@ -14,7 +15,7 @@ db_name='test.db'
 
 
 
-class TestTree(unittest.TestCase) :
+class TestDB(unittest.TestCase) :
 
     
     def test_insertWord(self) :
@@ -31,6 +32,29 @@ class TestTree(unittest.TestCase) :
 	    a=cur.fetchall()
 	    self.assertItemsEqual(a,compare) 
 	    
+
+t=tr.Tree()
+list_words =["test","command","cat","caterpillar","chown","chmod","chroot","table","word","words"]
+for i in list_words :
+  t.insert_word(i)
+
+t.insert_word("words",4)
+t.insert_word("word",1)
+
+
+
+class TestTree(unittest.TestCase) :
+  #def test_create_tree(self) :
+    #self.failUnlessRaises(ValueError,tr.Tree)
+      
+  def test_dump_load(self) :
+    db.dump(t,'test.db')
+    t2=tr.Tree()
+    db.load(t2,'test.db')
+    a=t.traverse('')
+    b=t2.traverse('')
+    self.assertItemsEqual(a,b) 
+    
 
 
 if __name__ == '__main__':
