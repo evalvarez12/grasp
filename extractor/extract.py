@@ -1,9 +1,8 @@
 
-symbols = [",", ".", ";", ":", "'", '"', "(", ")", '/', "&","?", "!","*","<",">"]
+symbols = [",", ".", ";", ":", "'", '"',"`", "(", ")", '/', "&","?", "!","*","<",">"]
 
 def processFile(filename) :
     with open(filename, 'r') as data :
-	print "Opening file ", filename
         return processText(data.read())
     #except EnvironmentError : 
         #print "ERROR: Can't load file"

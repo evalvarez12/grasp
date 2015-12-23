@@ -16,7 +16,7 @@ def createNewTable(db_name) :
     with con  :
         cur = con.cursor()
         cur.execute("DROP TABLE if exists counts")
-        cur.execute("CREATE TABLE Counts(word TEXT, times INT)")        
+        cur.execute("CREATE TABLE counts(word TEXT, times INT)")        
 
     
 def insertWord(word,db_name) :
@@ -26,7 +26,7 @@ def insertWord(word,db_name) :
         cur.execute("SELECT rowid FROM counts WHERE word = '" + word + "'")
         data=cur.fetchone()
         if data :
-	    cur.execute("UPDATE Counts SET times = times + 1 WHERE rowid = " + str(data[0]))
+	    cur.execute("UPDATE counts SET times = times + 1 WHERE rowid = " + str(data[0]))
         else :
 	    cur.execute("INSERT INTO Counts VALUES(" + "'" + word + "'"  + ",1)")
 	   
@@ -37,10 +37,10 @@ def dump(t,db_name) :
   with con  :
     cur = con.cursor() 
     a=t.traverse('')
-    cur.execute("DROP TABLE if exists root")
-    cur.execute("CREATE TABLE root(word TEXT, times INT)")
+    cur.execute("DROP TABLE if exists counts")
+    cur.execute("CREATE TABLE counts(word TEXT, times INT)")
     for k,v in a.iteritems() :
-      s="INSERT INTO Root VALUES(" + "'" + k + "'"  + "," + str(v) + ")"
+      s="INSERT INTO counts VALUES(" + "'" + k + "'"  + "," + str(v) + ")"
       cur.execute(s)
 
 
@@ -48,7 +48,7 @@ def load(t,db_name) :
   con=lite.connect(db_name)
   with con :
     cur = con.cursor() 
-    s="SELECT * FROM root"
+    s="SELECT * FROM counts"
     cur.execute(s)
     items = cur.fetchall()
     for i in items :
