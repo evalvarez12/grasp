@@ -1,7 +1,7 @@
 import os
-import extractor.extract as ext
-import extractor.db as db
-import extractor.tree as tr
+import building.extractor.extract as ext
+import building.extractor.db as db
+import building.extractor.tree as tr
 
 
 

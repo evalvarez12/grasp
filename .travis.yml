@@ -5,5 +5,7 @@ python:
   - "2.7"
 
 script: 
-  - python extractor/extract_test.py
-  - python extractor/db_test.py
+  - python building/extractor/extract_test.py
+  - python building/extractor/db_test.py
+  python building/extractor/tree_test.py
+  - python building/fetch_test.py

@@ -1,5 +1,7 @@
 
-symbols = [",", ".", ";", ":", "'", '"',"`", "(", ")", '/', "&","?", "!","*","<",">"]
+symbols = [",", ".", ";", ":", "'", '"',"`", "(", ")", '/', "&","?", "!","*","<",">","\r","\t"]
+#TO DO add space recognition eiter tab or space
+
 
 def processFile(filename) :
     with open(filename, 'r') as data :
