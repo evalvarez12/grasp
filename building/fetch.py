@@ -6,13 +6,16 @@ import extractor.extract as ext
 
 
 def getSynonims(word) :
-    url='http://www.diccionariodesinonimos.es/' + word + '/'
-    response = urllib2.urlopen(url)
-    html = response.read()
-    print url
-    res = findSynonims(html)
-    print res
-    return res
+    if word == 'ansitional' :
+	return ['EXCEPTION']
+    else :
+	url='http://www.diccionariodesinonimos.es/' + word + '/'
+	response = urllib2.urlopen(url)
+	html = response.read()
+	#print url
+	res = findSynonims(html)
+	#print res
+	return res
     
     
     
@@ -24,11 +27,12 @@ def findSynonims(data) :
 	synonims = data[start:end]
 	for i in unwanted :
 	    synonims = synonims.replace(i,"")
+	return ext.processText(synonims)    
     else :
 	start = data.find(' de" href="http://www.diccionariodesinonimos.es/') + 48
 	new_word = data[start:]
 	end = new_word.find('/')
 	new_word = new_word[:end]
 	synonims = getSynonims(new_word)
-    
-    return ext.processText(synonims)	
+        return getSynonims(new_word)
+    	
