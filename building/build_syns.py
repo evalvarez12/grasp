@@ -19,15 +19,18 @@ def build_synonims(db_name) :
 	cur.execute("CREATE TABLE IF NOT EXISTS synonims(word TEXT, syns TEXT)")
 
     
-	for i in items[:20] :
-	    word = dec.remove_accents(i[0])
-	    synonims = fet.getSynonims(word)
-	    joined = " ".join(synonims)
-
-	    s="INSERT INTO synonims VALUES('" + i[0] + "','" + joined + "')"
-	    cur.execute(s)
-	    
-	    print 'DONE : ',i[0],joined
+	for i in items :
+	    try :
+		word = dec.remove_accents(i[0])
+		synonims = fet.getSynonims(word)
+		joined = " ".join(synonims)
+		
+		s="INSERT INTO synonims VALUES('" + i[0] + "','" + joined + "')"
+		cur.execute(s)
+		
+		print 'DONE : ',i[0],joined
+	    except :
+		print 'ERROR ON : ', i[0]
 	    
 	    
 	    
