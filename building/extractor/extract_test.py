@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import extract as ext
 import unittest
 
@@ -5,28 +6,28 @@ import unittest
 class TestExtract(unittest.TestCase) :
     
     def test1(self) :
-	self.assertEqual(ext.processLine("word1 word2"),["word1","word2"])
+	self.assertEqual(ext.process_line("one two"),["one","two"])
 
     def test2(self) :
-	self.assertEqual(ext.processLine("(word?!)"),["word"])
+	self.assertEqual(ext.process_line("(word?!)"),["word"])
 	
     def test3(self) :
-	self.assertEqual(ext.processLine(" words ?"),["words"])
+	self.assertEqual(ext.process_line(" words ..."),["words"])
 
     def test4(self) :
-	self.assertEqual(ext.processLine("this is a 23241"),["this", "is", "a", "#"])
+	self.assertEqual(ext.process_line("this is a 23241"),["this", "is", "a"])
 
     def test5(self) :
-	self.assertEqual(ext.processLine("some-thing"),["some", "thing"])
+	self.assertEqual(ext.process_line("some-thing"),["some", "thing"])
 
     def test6(self) :
-	self.assertEqual(ext.processLine(" another-thing ! "),["another", "thing"])
+	self.assertEqual(ext.process_text(" words \n \n new paragraph  \n"),["words", "new","paragraph"])
     
-    #def test7(self) :
-	#self.assertEqual(ext.processLine("some<trash>thing"),["something"])	
+    def test7(self) :
+	self.assertEqual(ext.process_line(u'nñ aá eé'),["nñ","aá"])	
 	
     #def test8(self) :
-	#self.assertEqual(ext.processText("\n<some-html-code>\n "),[])	
+	#self.assertEqual(ext.process_text("\n<some-html-code>\n "),[])	
 	
 
 
