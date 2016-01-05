@@ -5,7 +5,7 @@ import re
 #TO DO add space recognition eiter tab or space
 
 
-words_re = re.compile(r'\b([a-zA-ZñÑ]+)\b',re.UNICODE)
+words_re = re.compile(r'\b([^\W\d_]+)\b',re.UNICODE) #all character on unicode without digits and such
 
 def process_file(filename) :
     with open(filename, 'r') as data :

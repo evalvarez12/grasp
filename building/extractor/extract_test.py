@@ -9,7 +9,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(ext.process_line("one two"),["one","two"])
 
     def test2(self) :
-	self.assertEqual(ext.process_line("(word?!)"),["word"])
+	self.assertEqual(ext.process_line("([{-%&/word?!_.;:}])"),["word"])
 	
     def test3(self) :
 	self.assertEqual(ext.process_line(" words ..."),["words"])
@@ -24,7 +24,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(ext.process_text(" words \n \n new paragraph  \n"),["words", "new","paragraph"])
     
     def test7(self) :
-	self.assertEqual(ext.process_line(u'nñ aá eé'),["nñ","aá"])	
+	self.assertEqual(ext.process_line(u'nñ aá eé'),[u"nñ",u"aá",u"eé"])	
 	
     #def test8(self) :
 	#self.assertEqual(ext.process_text("\n<some-html-code>\n "),[])	
