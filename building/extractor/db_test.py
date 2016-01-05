@@ -20,10 +20,10 @@ class TestDB(unittest.TestCase) :
     
     def test_insertWord(self) :
 	db.createNewTable(db_name)
-	processed = ext.processLine(text)
+	processed = ext.process_line(text)
 	for i in processed :
 	    db.insertWord(i,db_name)
-	compare=[("some",1),("test",3),("text",3),("to",1),("the",1),("count",2),("in",1),("a",1)]    
+	compare=[("Some",1),("test",3),("text",3),("to",1),("the",1),("count",2),("in",1),("a",1)]    
 	
 	con=lite.connect(db_name)
 	with con  :

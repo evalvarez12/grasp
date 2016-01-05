@@ -3,15 +3,15 @@
 import re
 
 
-titleRegex = re.compile(r'<title>(\w+)<\\title>',re.UNICODE)
+title_re = re.compile(r'<title>([^\W\d_]+)<\\title>',re.UNICODE)
 
-wordSpecsRegex = re.compile(r'== ?\{\{(\w+)\|(\w+)\}\} ?==',re.UNICODE)
+word_specs_re = re.compile(r'== ?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\} ?==',re.UNICODE)
 
-wordReplaceRegex = re.compile(r'\{\{plm\|(\w+)\}\}')
+word_replace1_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}')
 
-wordReplaceRegex2 = re.compile(r'\[\[(\w+)\]\]')
+word_replace2_re = re.compile(r'\[\[([^\W\d_]+)\]\]')
 
-numberReplaceRegex = re.compile(r';([0-9]+):')
+number_replace_re = re.compile(r';(\d+):')
 
 clear = re.compile(r'\{\{clear\}\}')
 
