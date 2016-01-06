@@ -21,6 +21,9 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.number_replace(" ;1: ;2:")," 1 2")
 	
     def test6(self) :
+	self.assertEqual(regs.number_replace(r" ;1 {{Tema}}:")," 1 Tema")	
+	
+    def test7(self) :
 	self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
 	
 
