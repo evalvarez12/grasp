@@ -16,5 +16,9 @@ subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
 for _ in range(5) :
     index = random.choice(lines_index)
     command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
-    subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
-
+    process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
+    process.communicate()
+    
+    separator = 'echo "##########################################################################" >> samples.txt'
+    process = subprocess.Popen(separator,stdout=subprocess.PIPE,shell=True)
+    process.communicate()
