@@ -14,6 +14,7 @@ number_replace_re = re.compile(r';(\d+):')
 
 clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
 
+#categories_re = re.compile(r'==\')
 
 
 def find_title(data) :
