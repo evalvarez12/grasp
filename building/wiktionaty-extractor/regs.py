@@ -4,17 +4,19 @@ import re
 
 title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
-word_specs_re = re.compile(r'==\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?==',re.UNICODE)
+word_specs_re = re.compile(r'[=]+\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?[=]+',re.UNICODE)
 
-word_replace1_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}')
+word_replace1_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
-word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]')
+word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
-number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:') #FIX THIS
+number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
 clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
 
+separator1_re = re.compile(r'[=]+\s?\{\{[^\W\d_]+|[^\W\d_]+\}\}\s?[=]+(.*)[=]+.*[=]+',re.UNICODE | re.DOTALL)
 
+separator2_re = re.compile(r'[=]+\s?[Ff]orma\s?[Vv]erbal\s?[=]+(.*)[=]+.*[=]+',re.UNICODE | re.DOTALL)
 
 
 def find_title(data) :
@@ -51,8 +53,11 @@ def remove_clear(data) :
     return clear_re.sub(r'',data)
 
     
-
-
-
+def get_contents(data) :
+    m = separator2_re.search(data)
+    if m :
+	return m.group(1)
+    else :
+	return None
 
 
