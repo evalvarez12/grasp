@@ -26,8 +26,8 @@ class TestExtract(unittest.TestCase) :
     def test7(self) :
 	self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
 	
-    def test8(self) :
-	self.assertEqual(regs.get_contents(r" == Forma verbal ==  \n  contenido {{entre}} [[categorias]] 2311   === FIN =="),r"  \n  contenido {{entre}} [[categorias]] 2311   ")	
+    #def test8(self) :
+	#self.assertEqual(regs.get_contents(r" == Forma verbal ==  \n  contenido {{entre}} [[categorias]] 2311   === FIN =="),r"  \n  contenido {{entre}} [[categorias]] 2311   ")	
 
 
 if __name__ == '__main__':
