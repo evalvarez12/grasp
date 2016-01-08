@@ -27,10 +27,10 @@ class TestExtract(unittest.TestCase) :
 	#self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
 	
     def test8(self) :
-	self.assertItemsEqual(regs.get_contents(ur" Precontenido === {{verbo|fr}} === primer_contenido === {{sustantivo|es}} ===segundo contenido===FIN==="),[ur" primer_contenido ",ur"segundo contenido"])	
+	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === primer_contenido === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" primer_contenido ",ur"segundo contenido ",ur" TERCERcontenído "])	
 	
     def test9(self) :
-	self.assertEqual(regs.get_contents(ur" Precontenido === forma verbal ===  \n  contenído {{entre}} [[categorias]] 2311   === FIN ==="),[ur"  \n  contenído {{entre}} [[categorias]] 2311   "])
+	self.assertEqual(regs.get_contents_verbal(ur" Precontenido === forma verbal ===  \n  contenído {{entre}} [[categorias]] 2311   === FIN ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")
 
 
 if __name__ == '__main__':

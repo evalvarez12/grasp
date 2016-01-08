@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 import re
 
+#a=r'[=]{2,3}\s?[a-zA-Z\{\}\|]+\s?[=]{2,3}'
+
 
 title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
@@ -10,9 +12,9 @@ word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
-separator1_re = re.compile(r'={2,3}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)[=]{2,3}',re.UNICODE)
+separator1_re = re.compile(r'={2,3}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,3})',re.UNICODE)
 
-separator2_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}([^(===)(==)]*)[=]{2,3}',re.UNICODE)
+separator2_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}([^(===)(==)]*)(?=[=]{2,3})',re.UNICODE)
 
 ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
@@ -55,17 +57,16 @@ def resolve_word_specs(data) :
 	return None
     
     
-def get_contents(data) :
-    contents = separator2_re.findall(data)
-    if contents :
-	return contents
+def get_contents_verbal(data) :
+    m = separator2_re.search(data)
+    if m :
+	return m.group(1)
     else :
-	m2 = separator1_re.search(data)
-	if m2 :
-	    return m2.group(1)
-	else :
-	    return None
-
+	return None
+    
+def get_contents_regular(data) :
+    matches = separator1_re.finditer(data)
+    return [match.group(1) for match in matches]
 	
 def clear_words(data) :
     data = word_replace2_re.sub(r'\1',data)
