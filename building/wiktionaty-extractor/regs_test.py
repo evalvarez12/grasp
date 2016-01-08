@@ -23,8 +23,8 @@ class TestExtract(unittest.TestCase) :
     def test6(self) :
 	self.assertEqual(regs.number_replace(r" ;1 {{Tema}}:")," 1 Tema")	
 	
-    def test7(self) :
-	self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
+    #def test7(self) :
+	#self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
 	
     def test8(self) :
 	self.assertEqual(regs.get_contents(ur" Precontenido === Forma verbal ===  \n  contenído {{entre}} [[categorias]] 2311   === FIN ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")	

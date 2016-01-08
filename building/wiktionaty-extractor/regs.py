@@ -16,7 +16,7 @@ separator1_re = re.compile(r'={2,3}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(=
 
 separator2_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}([^(===)(==)]*)[=]{2,3}',re.UNICODE)
 
-clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
+#clear_re = re.compile(r'\{\{\s?clear\s?\}\}') #SOBRA
 
 ignore2_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
@@ -28,8 +28,9 @@ ejemplo_re = re.compile(r":\*'''([Ee]jemplos?):'''",re.UNICODE)
 
 dots_remove_re = re.compile(r"::(.*)",re.UNICODE)
 
-special_info_re = re.compile(r'\{\{\[^\W\d_]+(?:\|[^\W\d_]+)*?\}\}',re.UNICODE)
+special_info_re = re.compile(r'\{\{\s?(.*)\s?\}\}',re.UNICODE)
 
+#verbal_form_re = re.compile(r'\{\{\s?[Ff]orma\s?verbal\s?\|p=([0-9a-z]{1,3})|t=([a-z]+)|m=([a-z]+)\}\}')
 #(?:         # Start of non-capturing group, matching...
        #[AGCT]{3}  # a DNA triplet
       #)*?  
@@ -81,5 +82,16 @@ def get_contents(data) :
 	
 	
 def special_info(data) :
-    return special_info_re.findall(data)
+    m = special_info_re.search(data)
+    if m :
+	return [m.group(1),m.group(2)]
+    else :
+	return None
 
+
+def cases(data) :
+    if '.' not in data :
+	groups = data.split('|')
+	return groups
+    else : 
+	return []
