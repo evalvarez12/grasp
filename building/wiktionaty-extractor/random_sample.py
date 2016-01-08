@@ -22,3 +22,17 @@ for _ in range(5) :
     separator = 'echo "##########################################################################" >> samples.txt'
     process = subprocess.Popen(separator,stdout=subprocess.PIPE,shell=True)
     process.communicate()
+    
+
+for i in lines_index :
+    if i[2] == "correr" :
+	j = i
+    
+index = j
+command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
+process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
+process.communicate()
+    
+separator = 'echo "##########################################################################" >> samples.txt'
+process = subprocess.Popen(separator,stdout=subprocess.PIPE,shell=True)
+process.communicate()    

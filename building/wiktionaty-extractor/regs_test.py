@@ -9,7 +9,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.find_title(u"<title>aléman</title>"),u"aléman")
 
     def test2(self) :
-	self.assertEqual(regs.find_word_specs(r"== {{verbo|fr}} =="),["verbo","fr"])
+	self.assertEqual(regs.find_word_specs(r"=== {{verbo|fr}} ==="),["verbo","fr"])
 	
     def test3(self) :
 	self.assertEqual(regs.word_replace2(u" como [[ link ]] aquí "),u" como link aquí ")
@@ -26,8 +26,11 @@ class TestExtract(unittest.TestCase) :
     def test7(self) :
 	self.assertEqual(regs.remove_clear(r" {{clear }}\n"),r" \n")	
 	
-    #def test8(self) :
-	#self.assertEqual(regs.get_contents(r" == Forma verbal ==  \n  contenido {{entre}} [[categorias]] 2311   === FIN =="),r"  \n  contenido {{entre}} [[categorias]] 2311   ")	
+    def test8(self) :
+	self.assertEqual(regs.get_contents(ur" Precontenido === Forma verbal ===  \n  contenído {{entre}} [[categorias]] 2311   === FIN ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")	
+	
+    def test9(self) :
+	self.assertEqual(regs.get_contents(ur" Precontenido === {{sustantivo|es}} ===  \n  contenído {{entre}} [[categorias]] 2311   === FIN ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")
 
 
 if __name__ == '__main__':

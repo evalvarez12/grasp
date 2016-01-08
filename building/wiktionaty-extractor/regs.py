@@ -4,7 +4,7 @@ import re
 
 title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
-word_specs_re = re.compile(r'[=]+\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?[=]+',re.UNICODE)
+word_specs_re = re.compile(r'={2,3}\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?={2,3}',re.UNICODE)
 
 word_replace1_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
@@ -12,12 +12,27 @@ word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
+separator1_re = re.compile(r'={2,3}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)[=]{2,3}',re.UNICODE)
+
+separator2_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}([^(===)(==)]*)[=]{2,3}',re.UNICODE)
+
 clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
 
-separator1_re = re.compile(r'[=]+\s?\{\{[^\W\d_]+|[^\W\d_]+\}\}\s?[=]+(.*)[=]+.*[=]+',re.UNICODE | re.DOTALL)
+ignore2_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
-separator2_re = re.compile(r'[=]+\s?[Ff]orma\s?[Vv]erbal\s?[=]+(.*)[=]+.*[=]+',re.UNICODE | re.DOTALL)
+ignore3_re = re.compile(r'\&quot;(.*)\&quot;',re.UNICODE)
 
+ignore3_re = re.compile(r'\&lt;(.*)\&gt;',re.UNICODE)
+
+ejemplo_re = re.compile(r":\*'''([Ee]jemplos?):'''",re.UNICODE)
+
+dots_remove_re = re.compile(r"::(.*)",re.UNICODE)
+
+special_info_re = re.compile(r'\{\{\[^\W\d_]+(?:\|[^\W\d_]+)*?\}\}',re.UNICODE)
+
+#(?:         # Start of non-capturing group, matching...
+       #[AGCT]{3}  # a DNA triplet
+      #)*?  
 
 def find_title(data) :
     m = title_re.search(data)
@@ -58,6 +73,13 @@ def get_contents(data) :
     if m :
 	return m.group(1)
     else :
-	return None
-
+	m2 = separator1_re.search(data)
+	if m2 :
+	    return m2.group(1)
+	else :
+	    return None
+	
+	
+def special_info(data) :
+    return special_info_re.findall(data)
 
