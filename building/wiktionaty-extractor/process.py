@@ -2,6 +2,14 @@ import regs as regs
 import sub_text as subs
 
 
+
+
+
+
+
+
+
+
 CORPUS = 'samples.txt'
 INDEX_LINES = 'samples-index.txt'
 
@@ -25,5 +33,6 @@ with open(CORPUS,'r') as corpus :
 	
 	
 	    
-    
+ 
+
 	
