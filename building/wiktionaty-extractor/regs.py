@@ -37,7 +37,7 @@ clear_re = re.compile(r'\{\{\s?clear\s?\}\}') #SOBRA
 
 plm_replace_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
-micro.re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)')
+micro_re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)')
 
 
 def find_title(data) :
@@ -106,13 +106,13 @@ def special_info(data) :
 
 
 def microprocess(data) :
-    m = micro.findall(data)
+    m = micro_re.findall(data)
     if m :
 	if m.group(1) == 'leng' | 'lengua' :
 	    return "Lengua: " + lang[m.group(2)]
 	else :
 	    return " ".join([m.group(1),m.group(2)])
-    elif 'form' in data :
+    elif 'forma' in data :
 	return data 
     else :
 	return data

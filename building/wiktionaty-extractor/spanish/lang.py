@@ -1,4 +1,4 @@
-
+# -*- coding: UTF-8 -*-
 LANGUAGES = {
     'aa' : 'Afar',
     'ab' : 'Abjaso',
