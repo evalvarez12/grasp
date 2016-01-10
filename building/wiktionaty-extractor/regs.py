@@ -1,20 +1,21 @@
 # -*- coding: UTF-8 -*-
 import re
+import spanish.lang as lang
 
 #a=r'[=]{2,3}\s?[a-zA-Z\{\}\|]+\s?[=]{2,3}'
 
 
 title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
-word_specs_re = re.compile(r'={2,3}\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?={2,3}',re.UNICODE)
+word_specs_re = re.compile(r'={2,4}\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?={2,4}',re.UNICODE)
 
 word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
-separator1_re = re.compile(r'={2,3}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,3})',re.UNICODE)
+separator1_re = re.compile(r'={2,4}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
 
-separator2_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}([^(===)(==)]*)(?=[=]{2,3})',re.UNICODE)
+separator2_re = re.compile(r'={2,4}\s?[Ff]orma\s?[a-zA-Z\sñÑ]+\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
 
 ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
@@ -28,13 +29,15 @@ dots_remove_re = re.compile(r"::",re.UNICODE)
 
 special_info_re = re.compile(r'\{\{\s?(.*)\s?\}\}',re.UNICODE)
 
-verbal_form_re = re.compile(r'={2,3}\s?[Ff]orma\s?[Vv]erbal\s?={2,3}')
+#special_info_re = re.compile(r'\{\{\s?([^\W\d_]+)(?=(\|[[^\W\d_]+])|(\s?\}\}))',re.UNICODE)
 
-#clear_re = re.compile(r'\{\{\s?clear\s?\}\}') #SOBRA
+verbal_form_re = re.compile(r'={2,4}\s?([Ff]orma\s?[a-zA-Z\sñÑ]+)\s?={2,4}')
 
-#word_replace1_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
+clear_re = re.compile(r'\{\{\s?clear\s?\}\}') #SOBRA
 
+plm_replace_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
+micro.re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)')
 
 
 def find_title(data) :
@@ -63,44 +66,65 @@ def get_contents_verbal(data) :
 	return m.group(1)
     else :
 	return None
+
     
 def get_contents_regular(data) :
     matches = separator1_re.finditer(data)
     return [match.group(1) for match in matches]
+
 	
-def clear_words(data) :
+def clean_contents(data) :
     data = word_replace2_re.sub(r'\1',data)
     data = ejemplo_re.sub(r'\1',data)
     data = ignore1_re.sub(r'',data)
     data = ignore2_re.sub(r'',data)
     data = ignore3_re.sub(r'',data)
     data = dots_remove_re.sub(r'',data)
+    data = clear_re.sub(r'',data)
+    data = plm_replace_re.sub(r'\1',data)
+    
     m = number_replace_re.search(data)
     if m :
 	if m.group(2) :
-	    return number_replace_re.sub(r'\1 \3',data)
+	    data = number_replace_re.sub(r'\1 \3:',data)
 	else :
-	    return number_replace_re.sub(r'\1',data)
-    else :
-	return data
+	    data = number_replace_re.sub(r'\1',data)
+    return data
+
 	
 def special_info(data) :
-    m = special_info_re.search(data)
+    info = special_info_re.findall(data)
+    all_list = []
+    for i in info :
+	joined = []
+	info_groups = i.split('|')
+	for j in info_groups :
+	    joined += microprocess(j)
+	all_list += [" ".join(joined)]
+	
+    return all_list
+
+
+def microprocess(data) :
+    m = micro.findall(data)
     if m :
-	return [m.group(1),m.group(2)]
+	if m.group(1) == 'leng' | 'lengua' :
+	    return "Lengua: " + lang[m.group(2)]
+	else :
+	    return " ".join([m.group(1),m.group(2)])
+    elif 'form' in data :
+	return data 
     else :
-	return None
-
-
-def cases(data) :
-    if '.' not in data :
-	groups = data.split('|')
-	return groups
-    else : 
-	return []
+	return data
     
-def resolve_type(data) :
-    verbal_form_match = verbal_form_re.search(data)
+	
+
+#def cases(data) :
+    #if '.' not in data :
+	#groups = data.split('|')
+	#return groups
+    #else : 
+
     
     
 #def word_replace1(data) :

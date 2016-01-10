@@ -210,7 +210,7 @@ LANGUAGES = {
     'my' : 'Birmano',
     'myv' : 'Erzya',
     'na' : 'Nauruano',
-    'nah' : 'Náhuatl (realmente es de ISO 639-2 pero la fundación Wikimedia lo usa)',
+    'nah' : 'Náhuatl',
     'nap' : 'Napolitano',
     'nav' : 'Plantilla:nav',
     'nb' : 'Noruego bokmål',
