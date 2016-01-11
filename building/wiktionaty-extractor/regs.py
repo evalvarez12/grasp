@@ -13,9 +13,9 @@ word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
-separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-ZñÑáéíóú\s]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
+separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-ZñÑáéíóú\s]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE | re.DOTALL)
 
-separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
+separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}([^(==)(===)]*)(?=[=]{2,4})',re.UNICODE | re.DOTALL)
 
 ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
