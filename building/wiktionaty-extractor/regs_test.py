@@ -27,10 +27,10 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.clean_contents(ur";1: {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur"1 forma verbo translimitar p=1s t futuro m subjuntivo Lengua: Español.")		
 	
     def test8(self) :
-	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === primer_contenido === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" primer_contenido ",ur"segundo contenido ",ur" TERCERcontenído "])	
+	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === \n primer_contenido \n === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" \n primer_contenido \n ",ur"segundo contenido ",ur" TERCERcontenído "])	
 	
     def test9(self) :
-	self.assertEqual(regs.get_contents_verbal(ur" Precontenido === forma verbal y algo ===  \n  contenído {{entre}} [[categorias]] 2311   === {{sustantivo|es}} ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")
+	self.assertEqual(regs.get_contents_form(ur" Precontenido === forma verbal y algo ===  \n  contenído {{entre}} [[categorias]] 2311   === {{sustantivo|es}} ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")
 
 
 if __name__ == '__main__':

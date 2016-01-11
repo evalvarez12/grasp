@@ -60,7 +60,7 @@ def resolve_word_specs(data) :
 	return None
     
     
-def get_contents_verbal(data) :
+def get_contents_form(data) :
     m = separator2_re.search(data)
     if m :
 	return m.group(1)
@@ -116,7 +116,7 @@ def microprocess(data) :
     m = micro_re.search(data)
     if m :
 	if m.group(1) == ('leng' or 'lengua') :
-	    return ["Lengua: " + lang.LANGUAGES[m.group(2)]]
+	    return [u"Lengua: " + unicode(lang.LANGUAGES[m.group(2)],"utf-8")]
 	else :
 	    return [" ".join([m.group(1),m.group(2)])]
     elif 'forma' in data :
