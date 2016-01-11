@@ -21,10 +21,10 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.clean_contents(" ;1: ;2:")," 1 2")
 	
     def test6(self) :
-	self.assertEqual(regs.clean_contents(r" ;1 {{Tema}}: Este tema es ...")," 1 Tema: Este tema es ...")	
+	self.assertEqual(regs.clean_contents(r" ;1 {{Tema}}: Este tema es ... {{sinonimos|un sinonimo}}{{ clear }}")," 1 Tema: Este tema es ... sinonimos un sinonimo")	
 	
-    #def test7(self) :
-	#self.assertEqual(regs.special_info(r" {{clear}}\n"),[r"clear","second","third"])	
+    def test7(self) :
+	self.assertEqual(regs.clean_contents(ur";1: {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur"1 forma verbo translimitar p=1s t futuro m subjuntivo Lengua: Español.")		
 	
     def test8(self) :
 	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === primer_contenido === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" primer_contenido ",ur"segundo contenido ",ur" TERCERcontenído "])	

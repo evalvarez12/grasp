@@ -89,33 +89,40 @@ def clean_contents(data) :
 	    data = number_replace_re.sub(r'\1 \3:',data)
 	else :
 	    data = number_replace_re.sub(r'\1',data)
+	    
+    data = special_info(data)
+    
     return data
 
 	
 def special_info(data) :
     info = special_info_re.findall(data)
-    all_list = []
+    cleaned = []
     for i in info :
-	joined = []
+	to_join = []
 	info_groups = i.split('|')
 	for j in info_groups :
-	    joined += microprocess(j)
-	all_list += [" ".join(joined)]
+	    to_join += microprocess(j)
+	cleaned += [" ".join(to_join)]
+    
+    for i in range(len(info)) :
+	to_replace = r"{{" + info[i] + r"}}"
+	data = data.replace(to_replace,cleaned[i])
 	
-    return all_list
+    return data
 
 
 def microprocess(data) :
-    m = micro_re.findall(data)
+    m = micro_re.search(data)
     if m :
-	if m.group(1) == 'leng' | 'lengua' :
-	    return "Lengua: " + lang[m.group(2)]
+	if m.group(1) == ('leng' or 'lengua') :
+	    return ["Lengua: " + lang.LANGUAGES[m.group(2)]]
 	else :
-	    return " ".join([m.group(1),m.group(2)])
+	    return [" ".join([m.group(1),m.group(2)])]
     elif 'forma' in data :
-	return data 
+	return [data] 
     else :
-	return data
+	return [data]
     
 	
 
