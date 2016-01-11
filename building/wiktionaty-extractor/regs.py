@@ -7,15 +7,15 @@ import spanish.lang as lang
 
 title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
-word_specs_re = re.compile(r'={2,4}\s?\{\{([^\W\d_]+)\|([^\W\d_]+)\}\}\s?={2,4}',re.UNICODE)
+word_specs_re = re.compile(ur'={2,4}\s?\{\{([a-zA-ZñÑáéíóú\s]+)\|([a-zA-ZñÑáéíóú\s]+)\}\}\s?={2,4}',re.UNICODE)  #FIND A MORE CIVILIZED WAY TO DO THIS
 
 word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
-separator1_re = re.compile(r'={2,4}\s?\{\{[^\W\d_]+\|[^\W\d_]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
+separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-ZñÑáéíóú\s]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
 
-separator2_re = re.compile(r'={2,4}\s?[Ff]orma\s?[a-zA-Z\sñÑ]+\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
+separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE)
 
 ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
@@ -31,13 +31,13 @@ special_info_re = re.compile(r'\{\{\s?(.*)\s?\}\}',re.UNICODE)
 
 #special_info_re = re.compile(r'\{\{\s?([^\W\d_]+)(?=(\|[[^\W\d_]+])|(\s?\}\}))',re.UNICODE)
 
-verbal_form_re = re.compile(r'={2,4}\s?([Ff]orma\s?[a-zA-Z\sñÑ]+)\s?={2,4}')
+verbal_form_re = re.compile(ur'={2,4}\s?([Ff]orma\s?[a-zA-ZñÑáéíóú\s]+)\s?={2,4}',re.UNICODE)
 
-clear_re = re.compile(r'\{\{\s?clear\s?\}\}') #SOBRA
+clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
 
 plm_replace_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
-micro_re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)')
+micro_re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)',re.UNICODE)
 
 
 def find_title(data) :

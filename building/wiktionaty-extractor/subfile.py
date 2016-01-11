@@ -2,11 +2,12 @@ import regs as regs
 import re as re
 
 def get_contents(data) :
-    form_match = regs.get_contents_form(data) 
+    form = regs.get_contents_form(data) 
+    print "Form: ",form
     contents = ''
-    if form_match :
-	print "form"
-        contents = contents + regs.clean_contents(data) + '\n'
+    if form :
+	print "FORM"
+        contents = contents + regs.clean_contents(form) + '\n'
     specs = regs.find_word_specs(data)
     if specs :
 	print specs

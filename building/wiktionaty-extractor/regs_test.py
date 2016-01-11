@@ -9,7 +9,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.find_title(u"<title>aléman</title>"),u"aléman")
 
     def test2(self) :
-	self.assertEqual(regs.find_word_specs(r"=== {{verbo|fr}} ===  algun contenido === {{sustantivo|es}} ==="),[("verbo","fr"),("sustantivo","es")])
+	self.assertEqual(regs.find_word_specs(ur"=== {{verbo transitívo|fr}} ===  algun contenido === {{sustantivo|es}} ==="),[(u"verbo transitívo",u"fr"),(u"sustantivo",u"es")])
 	
     def test3(self) :
 	self.assertEqual(regs.clean_contents(u":*'''Ejemplos:''' como [[ palabra ]] aquí [http link]"),u"Ejemplos: como palabra aquí ")
@@ -30,7 +30,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === \n primer_contenido \n === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" \n primer_contenido \n ",ur"segundo contenido ",ur" TERCERcontenído "])	
 	
     def test9(self) :
-	self.assertEqual(regs.get_contents_form(ur" Precontenido === forma verbal y algo ===  \n  contenído {{entre}} [[categorias]] 2311   === {{sustantivo|es}} ==="),ur"  \n  contenído {{entre}} [[categorias]] 2311   ")
+	self.assertEqual(regs.get_contents_form(ur" Precontenido === forma verbal y algo ===  {{fomrma verbal|verbo|tiempo|persona}}   === {{sustantivo|es}} ==="),ur"  {{fomrma verbal|verbo|tiempo|persona}}   ")
 
 
 if __name__ == '__main__':
