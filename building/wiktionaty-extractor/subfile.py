@@ -5,7 +5,6 @@ def get_contents(data) :
     form = regs.get_contents_form(data) 
     contents = ''
     if form :
-	print "FORM YES!!"
         contents = contents + regs.clean_contents(form) + '\n'
     specs = regs.find_word_specs(data)
     if specs :
@@ -13,17 +12,13 @@ def get_contents(data) :
 	regular_contents = regs.get_contents_regular(data)
 	for i in range(len(specs)) :
 	    contents += specs[i][0] + ' ' + specs[i][1] + '\n'
-	    contents += regs.clean_contents(regular_contents[i]) + '\n'
+	    contents += regs.clean_contents(regular_contents[i]) 
+    contents = re.sub(' {2}',' ',contents)
+    contents = re.sub('\n{2}','\n',contents)
+    contents = re.sub('^[ \n]+','',contents)
+    contents = re.sub('\n ','\n',contents)
+    contents = re.sub('$[ \n]+','',contents)
     return contents
        
        
        
-#def clean_contents(data) :
-    #data = regs.clear_words(data)
-    #special = regs.special_info_re.findall(data)
-    #for i in special :
-	#info = i.split('|')
-	#if info[0] == 'clear' :
-	    #data = re.sub(r'{{clear}},'r'',data)
-	#elif info[0] == 'plm' :
-	    #data = re.sub(r'{{}})

@@ -13,9 +13,9 @@ word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
-separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-ZñÑáéíóú\s]+\}\}\s?={2,3}([^(===)(==)]*)(?=[=]{2,4})',re.UNICODE | re.DOTALL)
+separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-ZñÑáéíóú\s]+\}\}\s?={2,3}(.*?)(?===)',re.UNICODE | re.DOTALL)
 
-separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}([^(==)(===)]*)(?=[=]{2,4})',re.UNICODE | re.DOTALL)
+separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}(.*?)(?===)',re.UNICODE | re.DOTALL)
 
 ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
 
@@ -37,7 +37,7 @@ clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
 
 plm_replace_re = re.compile(r'\{\{plm\|([^\W\d_]+)\}\}',re.UNICODE)
 
-micro_re = re.compile(r'([^\W\d_]+)=([^\W\d_]+)',re.UNICODE)
+micro_re = re.compile(r'([^\W_]+)=([^\W_]+)',re.UNICODE)
 
 
 def find_title(data) :
@@ -49,7 +49,13 @@ def find_title(data) :
     
 def find_word_specs(data) :
     specs = word_specs_re.findall(data)
-    return specs
+    new_specs = []
+    for i in specs :
+	try :
+	    new_specs += [(i[0],lang.LANGUAGES[i[1]])]
+	except KeyError :
+	    new_specs += [(i[0],'lengua desconocida')]
+    return new_specs
 
     
 def resolve_word_specs(data) :
@@ -116,11 +122,22 @@ def microprocess(data) :
     m = micro_re.search(data)
     if m :
 	if m.group(1) == ('leng' or 'lengua') :
-	    return [u"Lengua: " + unicode(lang.LANGUAGES[m.group(2)],"utf-8")]
+	    try :
+		return [u"lengua: " + lang.LANGUAGES[m.group(2)]]
+	    except KeyError :
+		return [u"lengua: desconocida"]
+	elif m.group(1) == 'p' :
+	    return [u"persona: " + m.group(2)]
+	elif m.group(1) == 't' :
+	    return [u"tiempo: " + m.group(2)]
+	elif m.group(1) == 'm' :
+	    return [u"modo: " + m.group(2)]
 	else :
 	    return [" ".join([m.group(1),m.group(2)])]
     elif 'forma' in data :
-	return [data] 
+	return [data]
+    elif ('=' or '.') in data :
+	return ['']
     else :
 	return [data]
     
