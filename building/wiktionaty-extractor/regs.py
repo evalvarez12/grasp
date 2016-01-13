@@ -9,7 +9,7 @@ title_re = re.compile(r'<title>([^\W\d_]+)</title>',re.UNICODE)
 
 word_specs_re = re.compile(ur'={2,4}\s?\{\{([a-zA-ZñÑáéíóú\s]+)\|([a-zA-ZñÑáéíóú\s]+)\}\}\s?={2,4}',re.UNICODE)  #FIND A MORE CIVILIZED WAY TO DO THIS
 
-word_replace2_re = re.compile(r'\[\[\s?([^\W\d_]+)\s?\]\]',re.UNICODE)
+word_replace2_re = re.compile(r'\[\[\s?([a-zA-ZñÑáéíóú\s|]+)\s?\]\]',re.UNICODE)
 
 number_replace_re = re.compile(r';(\d+)\s?(\{\{([^\W\d_]+)\}\})?:',re.UNICODE)
 
@@ -17,17 +17,17 @@ separator1_re = re.compile(ur'={2,4}\s?\{\{[a-zA-ZñÑáéíóú\s]+\|[a-zA-Zñ�
 
 separator2_re = re.compile(ur'={2,4}\s?[Ff]orma\s?[a-zA-ZñÑáéíóú\s]+\s?={2,3}(.*?)(?===)',re.UNICODE | re.DOTALL)
 
-ignore1_re = re.compile(r'\[(.*)\]',re.UNICODE)
+ignore1_re = re.compile(r'\[(.*?)\]',re.UNICODE)
 
-ignore2_re = re.compile(r'\&quot;(.*)\&quot;',re.UNICODE)
+ignore2_re = re.compile(r'\&quot;(.*?)\&quot;',re.UNICODE)
 
-ignore3_re = re.compile(r'\&lt;(.*)\&gt;',re.UNICODE)
+ignore3_re = re.compile(r'\&lt;(.*?)\&gt;',re.UNICODE)
 
 ejemplo_re = re.compile(r":\*'''([^']+)'''",re.UNICODE)
 
 dots_remove_re = re.compile(r"::",re.UNICODE)
 
-special_info_re = re.compile(r'\{\{\s?(.*)\s?\}\}',re.UNICODE)
+special_info_re = re.compile(r'\{\{\s?(.*?)\s?\}\}',re.UNICODE)
 
 #special_info_re = re.compile(r'\{\{\s?([^\W\d_]+)(?=(\|[[^\W\d_]+])|(\s?\}\}))',re.UNICODE)
 
@@ -83,7 +83,7 @@ def clean_contents(data) :
     data = word_replace2_re.sub(r'\1',data)
     data = ejemplo_re.sub(r'\1',data)
     data = ignore1_re.sub(r'',data)
-    data = ignore2_re.sub(r'',data)
+    data = ignore2_re.sub(r'\1',data)
     data = ignore3_re.sub(r'',data)
     data = dots_remove_re.sub(r'',data)
     data = clear_re.sub(r'',data)
@@ -121,7 +121,7 @@ def special_info(data) :
 def microprocess(data) :
     m = micro_re.search(data)
     if m :
-	if m.group(1) == ('leng' or 'lengua') :
+	if (m.group(1) == 'leng') or (m.group(1) == 'lengua') :
 	    try :
 		return [u"lengua: " + lang.LANGUAGES[m.group(2)]]
 	    except KeyError :
@@ -132,11 +132,13 @@ def microprocess(data) :
 	    return [u"tiempo: " + m.group(2)]
 	elif m.group(1) == 'm' :
 	    return [u"modo: " + m.group(2)]
+	elif (m.group(1) == u'tít') or (m.group(1) == u'tit') :
+	    return [m.group(2)]
 	else :
 	    return [" ".join([m.group(1),m.group(2)])]
     elif 'forma' in data :
 	return [data]
-    elif ('=' or '.') in data :
+    elif ('=' in data) or ('.' in data) or ('-' in data) :
 	return ['']
     else :
 	return [data]

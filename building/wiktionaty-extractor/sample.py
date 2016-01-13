@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import regs as regs
-import sub_text as sub
+import subtext as sub
 import subprocess
 import random
 
@@ -13,7 +13,7 @@ lines_index = sub.get_lines(INDEX,CORPUS)
 command = "rm samples.txt"
 subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
 
-for _ in range(5) :
+for _ in range(10) :
     index = random.choice(lines_index)
     command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
     process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
@@ -25,7 +25,7 @@ for _ in range(5) :
     
 
 for i in lines_index :
-    if i[2] == "correr" :
+    if i[2] == u"niño" :
 	j = i
     
 index = j

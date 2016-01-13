@@ -1,5 +1,5 @@
 import regs as regs
-import sub_text as subs
+import subtext as subs
 
 CORPUS = 'samples.txt'
 INDEX_LINES = 'samples-index.txt'
@@ -17,8 +17,9 @@ with open(CORPUS,'r') as corpus :
 	if title != index[2] :
 	    print "ERROR EN  TITULOS"
 	    #raise title_exeption()
-	    
-	
+	contents = subs.get_contents(sub_text)
+	contents = '--' + title + '--\n' + contents
+	print contents
 	    
 	
 	

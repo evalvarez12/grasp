@@ -9,7 +9,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.find_title(u"<title>aléman</title>"),u"aléman")
 
     def test2(self) :
-	self.assertEqual(regs.find_word_specs(ur"=== {{verbo transitívo|fr}} ===  algun contenido === {{sustantivo|es}} ==="),[(u"verbo transitívo",u"fr"),(u"sustantivo",u"es")])
+	self.assertEqual(regs.find_word_specs(ur"=== {{verbo transitívo|fr}} ===  algun contenido === {{sustantivo|es}} ==="),[(u"verbo transitívo",u"Francés"),(u"sustantivo",u"Español")])
 	
     def test3(self) :
 	self.assertEqual(regs.clean_contents(u":*'''Ejemplos:''' como [[ palabra ]] aquí [http link]"),u"Ejemplos: como palabra aquí ")
@@ -24,7 +24,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(regs.clean_contents(r" ;1 {{Tema}}: Este tema es ... {{sinonimos|un sinonimo}}{{ clear }}")," 1 Tema: Este tema es ... sinonimos un sinonimo")	
 	
     def test7(self) :
-	self.assertEqual(regs.clean_contents(ur";1: {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur"1 forma verbo translimitar p=1s t futuro m subjuntivo Lengua: Español.")		
+	self.assertEqual(regs.clean_contents(ur";1: {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur"1 forma verbo translimitar persona: 1s tiempo: futuro modo: subjuntivo lengua: Español.")		
 	
     def test8(self) :
 	self.assertEqual(regs.get_contents_regular(ur" Precontenido === {{verbo|fr}} === \n primer_contenido \n === {{sustantivo|es}} ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" \n primer_contenido \n ",ur"segundo contenido ",ur" TERCERcontenído "])	
