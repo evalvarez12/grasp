@@ -1,16 +1,16 @@
 # -*- coding: UTF-8 -*-
-import subprocess
 import re
-import regs as regs
+import subprocess
 
-def get_lines(index_file,corpus) :
+
+def get_lines(CProc,index_file,corpus) :
     number_re = re.compile('\d+')
     marks = []
     with open(index_file) as f :
 	for line in f :
 	    line_unicode = unicode(line, "utf-8")
 	    number_match = number_re.search(line_unicode)
-	    title = regs.find_title(line_unicode)
+	    title = CProc.find_title(line_unicode)
 	    marks += [(int(number_match.group()),title)]
 	    
     proc = subprocess.Popen(["wc -l " + corpus],stdout=subprocess.PIPE, shell=True)
@@ -28,24 +28,22 @@ def get_lines(index_file,corpus) :
 	
     return sub_texts
 	
-    
 
 
-
-def get_contents(data) :
-    form = regs.get_contents_form(data) 
+def get_contents(CProc,WProc,data) :
+    form = CProc.get_contents_form(data) 
     contents = ''
     if form :
-        contents = contents + regs.clean_contents(form) + '\n'
-    specs = regs.find_word_specs(data)
+        contents = contents + WProc.clean_contents(form) + '\n'
+    specs = CProc.find_word_specs(data)
     if specs :
-	regular_contents = regs.get_contents_regular(data)
+	regular_contents = CProc.get_contents_regular(data)
 	for i in range(len(specs)) :
 	    if re.search('[Ll]engua',specs[i][0]) :
 		contents = specs[i][0] + ' ' + specs[i][1] + '\n' + contents
 	    else :
 		contents += specs[i][0] + ' ' + specs[i][1] + '\n'
-		contents += regs.clean_contents(regular_contents[i]) 
+		contents += WProc.clean_contents(regular_contents[i]) 
 	    
     contents = re.sub(' {2,}',' ',contents)
     contents = re.sub('\n{2,}','\n',contents)
@@ -54,5 +52,6 @@ def get_contents(data) :
     contents = re.sub('$[ \n]+','',contents)
     return contents
        
-       
+
+    
        
