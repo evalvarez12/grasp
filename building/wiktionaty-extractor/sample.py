@@ -13,8 +13,9 @@ lines_index = sub.get_lines(INDEX,CORPUS)
 command = "rm samples.txt"
 subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
 
-for _ in range(10) :
-    index = random.choice(lines_index)
+for i in range(10) :
+    index = lines_index[i]
+    #index = random.choice(lines_index)
     command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
     process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
     process.communicate()
@@ -24,15 +25,15 @@ for _ in range(10) :
     process.communicate()
     
 
-for i in lines_index :
-    if i[2] == u"niño" :
-	j = i
+#for i in lines_index :
+    #if i[2] == u"niño" :
+	#j = i
     
-index = j
-command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
-process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
-process.communicate()
+#index = j
+#command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
+#process = subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
+#process.communicate()
     
-separator = 'echo "##########################################################################" >> samples.txt'
-process = subprocess.Popen(separator,stdout=subprocess.PIPE,shell=True)
-process.communicate()    
+#separator = 'echo "##########################################################################" >> samples.txt'
+#process = subprocess.Popen(separator,stdout=subprocess.PIPE,shell=True)
+#process.communicate()    
