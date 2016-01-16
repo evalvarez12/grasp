@@ -5,82 +5,66 @@ import spanish.lang as lang
 class Words :
     
     def __init__(self) :
-	self.number_replace_re = re.compile(r';(\d+)\s?(\{\{([\w\[\]\{\}|]+)\}\})?:',re.UNICODE)
-	self.word_replace2_re = re.compile(r'\[\[\s?([\w\s|]+)\s?\]\]',re.UNICODE) 
-	self.ignore1_re = re.compile(r'\[(.*?)\]',re.UNICODE)
-	self.ignore2_re = re.compile(r'\&quot;(.*?)\&quot;',re.UNICODE)
-	self.ignore3_re = re.compile(r'\&lt;(.*?)\&gt;',re.UNICODE)
-	self.ejemplo_re = re.compile(r":\*'''([^'\[\]]+)'''",re.UNICODE)
-	self.dots_remove_re = re.compile(r"::",re.UNICODE)
-	self.special_info_re = re.compile(r'\{\{\s?(.*?)\s?\}\}',re.UNICODE)
-	#special_info_re = re.compile(r'\{\{\s?([^\W\d_]+)(?=(\|[[^\W\d_]+])|(\s?\}\}))',re.UNICODE)
-	self.verbal_form_re = re.compile(ur'={2,4}\s?([Ff]orma\s?[\w\s]+)\s?={2,4}',re.UNICODE)
-	self.clear_re = re.compile(r'\{\{\s?clear\s?\}\}')
-	self.plm_replace_re = re.compile(r'\{\{plm\|([\w]+)\}\}',re.UNICODE)
-	self.micro_re = re.compile(r'([\w]+)=([\w]+)',re.UNICODE)
+	self.words_re = re.compile(r'\b(\w+)\b',re.UNICODE)
+	self.squares_re = re.compile(r'\[\[(.*?)\]\]',re.UNICODE)
+	self.keys_re = re.compile(r'\{\{.*?\}\}',re.UNICODE)
+	self.single_squares_re = re.compile(r'\[.*?\]',re.UNICODE)
+	self.apos_re = re.compile(r":\*'''([^']+?)'''",re.UNICODE)
+	self.quot_re = re.compile(r'\&quot;(.*?)\&quot;',re.UNICODE)
+	self.lgt_re = re.compile(r'\&lt;(.*?)\&gt;',re.UNICODE)
 	
 	
-    def clean_contents(self,data) :
-	data = self.word_replace2_re.sub(r'\1',data)
-	data = self.ejemplo_re.sub(r'\1',data)
-	data = self.ignore1_re.sub(r'',data)
-	data = self.ignore2_re.sub(r'\1',data)
-	data = self.ignore3_re.sub(r'',data)
-	data = self.dots_remove_re.sub(r'',data)
-	data = self.clear_re.sub(r'',data)
-	data = self.plm_replace_re.sub(r'\1',data)
-	
-	m = self.number_replace_re.search(data)
-	if m :
-	    if m.group(2) :
-		data = self.number_replace_re.sub(r'\1 \3:',data)
+    def extract_words(self,data) :
+	words = self.words_re.findall(data)
+	return words
+    
+    def solve_keys(self,data) :
+	keys = self.keys_re.findall(data)
+	new_data = data
+	for i in keys :
+	    pipe_check = i.split('|')
+	    if '.' in pipe_check[0] :
+		replacement = ''
 	    else :
-		data = self.number_replace_re.sub(r'\1',data)
+		words = self.extract_words(i)
+		# ALL SPECIAL KNOWN CASES
+		if words[0] == 'clear' :
+		    replacement = ''
+		elif words[0] == 'plm' :
+		    replacement = ' '.join(words[1:])
+		else :
+		    replacement = ' '.join(words)
 		
-	data = self.special_info(data)
-	
-	return data
-
+	    #print i,replacement
+	    new_data = new_data.replace(i,replacement)
+	return new_data
 	    
-    def special_info(self,data) :
-	info = self.special_info_re.findall(data)
-	cleaned = []
-	for i in info :
-	    to_join = []
-	    info_groups = i.split('|')
-	    for j in info_groups :
-		to_join += self.microprocess(j)
-	    cleaned += [" ".join(to_join)]
-	
-	for i in range(len(info)) :
-	    to_replace = r"{{" + info[i] + r"}}"
-	    data = data.replace(to_replace,cleaned[i])
-	    
-	return data
-
-
-    def microprocess(self,data) :
-	m = self.micro_re.search(data)
-	if m :
-	    if (m.group(1) == 'leng') or (m.group(1) == 'lengua') :
-		try :
-		    return [u"lengua: " + lang.LANGUAGES[m.group(2)]]
-		except KeyError :
-		    return [u"lengua: desconocida"]
-	    elif m.group(1) == 'p' :
-		return [u"persona: " + m.group(2)]
-	    elif m.group(1) == 't' :
-		return [u"tiempo: " + m.group(2)]
-	    elif m.group(1) == 'm' :
-		return [u"modo: " + m.group(2)]
-	    elif (m.group(1) == u'tít') or (m.group(1) == u'tit') :
-		return [m.group(2)]
+		
+    def solve_squares(self,data) :
+	squares = self.squares_re.findall(data)
+	new_data = data
+	for i in squares :
+	    words = i.split('|')
+	    # ALL SPECIAL KNOWN CASES
+	    if 'w:' in words[0] :
+		replacement = ' '.join(words[1:])
+	    elif len(words) > 1 :
+		replacement = words[0] + "(" + ' '.join(words[1:]) + ")"  
 	    else :
-		return [" ".join([m.group(1),m.group(2)])]
-	elif 'forma' in data :
-	    return [data]
-	elif ('=' in data) or ('.' in data) or ('-' in data) :
-	    return ['']
-	else :
-	    return [data]
+		replacement = ' '.join(words)
+		
+	    #print i,replacement
+	    old = '[[' + i + ']]'
+	    new_data = new_data.replace(old,replacement)
+	return new_data
+    
+    def clean_contents(self,data) :
+	new_data = self.solve_keys(data)
+	new_data = self.solve_squares(data)
+	new_data = self.single_squares_re.sub(r'',new_data)
+	new_data = self.apos_re.sub(r'\1',new_data)
+	new_data = self.quot_re.sub(r'\1',new_data)
+	new_data = self.lgt_re.sub(r'',new_data)
+	
+	return new_data
 	
