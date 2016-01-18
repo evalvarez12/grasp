@@ -42,24 +42,34 @@ def get_contents(CProc,WProc,FProc,data) :
 	    sec = CProc.get_contents(data,i)
 	    contents = contents + WProc.clean_contents_form(sec) + '\n'
 	elif section_words[0] in titles.TITLES :
-	    leng = [len(it) <= 3 for it in section_words]
-	    if leng.count(True) == 1 :
-		ind = leng.index(True)
+	    try :
+		section_words[-1] = lang.LANGUAGES[section_words[-1]]
+	    except KeyError :
 		try :
-		    section_words[ind] =  lang.LANGUAGES[section_words[ind]]
-		except KeyError : 
-		    section_words[ind] =  'Lengua desconocida'
-	    contents = contents + ' '.join(section_words) + '\n'
-	    #print i
-	    sec = CProc.get_contents(data,i)
-	    #print sec
-	    contents = contents + WProc.clean_contents(sec) + '\n'
-	    #print i 
-	    #print '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-	    #print sec
-	    #print '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-	    #print contents
-	    #print '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+		    section_words[-2] = lang.LANGUAGES[section_words[-2]]
+		except KeyError :
+		    pass
+		else :
+		    contents = contents + ' '.join(section_words) + '\n'
+		    sec = CProc.get_contents(data,i)
+		    contents = contents + WProc.clean_contents(sec) + '\n'
+	    else :
+		contents = contents + ' '.join(section_words) + '\n'
+		sec = CProc.get_contents(data,i)
+		contents = contents + WProc.clean_contents(sec) + '\n'
+	    
+	    #leng = [len(it) <= 3 for it in section_words]
+	    #if leng.count(True) == 1 :
+		#ind = leng.index(True)
+		#try :
+		    #section_words[ind] =  lang.LANGUAGES[section_words[ind]]
+		#except KeyError : 
+		    #section_words[ind] =  'Lengua desconocida'
+		#contents = contents + ' '.join(section_words) + '\n'
+		#sec = CProc.get_contents(data,i)
+
+		#contents = contents + WProc.clean_contents(sec) + '\n'
+
 	
     contents = FProc.clean(contents)
     return contents
