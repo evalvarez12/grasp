@@ -23,8 +23,8 @@ class TestExtract(unittest.TestCase) :
     #def test6(self) :
 	#self.assertEqual(WordsProc.clean_contents(r" ;1 {{Tema}}: Este tema es ... {{sinonimos|un sinonimo}}{{ clear }}")," 1 Tema: Este tema es ... sinonimos un sinonimo")	
 	
-    #def test7(self) :
-	#self.assertEqual(WordsProc.clean_contents(ur";1: {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur"1 forma verbo translimitar persona: 1s tiempo: futuro modo: subjuntivo lengua: Español.")		
+    def test7(self) :
+	self.assertEqual(WordsProc.solve_keys_forma(ur" {{forma verbo|translimitar|p=1s|t=futuro|m=subjuntivo|leng=es}}."),ur" forma verbo translimitar persona: 1s tiempo: futuro modo: subjuntivo lengua: Español.")		
 
 if __name__ == '__main__':
     unittest.main()
