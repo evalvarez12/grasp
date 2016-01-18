@@ -1,11 +1,13 @@
 import contents as conts
 import words as words
 import subtext as subs
+import formt as formt
 import re
 
 
 WordsProc = words.Words()
 ContsProc = conts.Contents()
+FormatProc = formt.Format()
 
 
 CORPUS = 'samples.txt'
@@ -24,7 +26,7 @@ with open(CORPUS,'r') as corpus :
 	if title != index[2] :
 	    print "ERROR EN  TITULOS"
 	    #raise title_exeption()
-	contents = subs.get_contents(ContsProc,WordsProc,sub_text)
+	contents = subs.get_contents(ContsProc,WordsProc,FormatProc,sub_text)
 	contents = '--' + title + '--\n' + contents
 	print contents
 	    

@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 import re
 import subprocess
+import spanish.lang as lang
+import spanish.titles as titles
 
 
 def get_lines(CProc,index_file,corpus) :
@@ -30,26 +32,36 @@ def get_lines(CProc,index_file,corpus) :
 	
 
 
-def get_contents(CProc,WProc,data) :
-    form = CProc.get_contents_form(data) 
+def get_contents(CProc,WProc,FProc,data) :
+    sections = CProc.find_sections(data)
     contents = ''
-    if form :
-        contents = contents + WProc.clean_contents(form) + '\n'
-    specs = CProc.find_word_specs(data)
-    if specs :
-	regular_contents = CProc.get_contents_regular(data)
-	for i in range(len(specs)) :
-	    if re.search('[Ll]engua',specs[i][0]) :
-		contents = specs[i][0] + ' ' + specs[i][1] + '\n' + contents
-	    else :
-		contents += specs[i][0] + ' ' + specs[i][1] + '\n'
-		contents += WProc.clean_contents(regular_contents[i]) 
-	    
-    contents = re.sub(' {2,}',' ',contents)
-    contents = re.sub('\n{2,}','\n',contents)
-    contents = re.sub('^[ \n]+','',contents)
-    contents = re.sub('\n ','\n',contents)
-    contents = re.sub('$[ \n]+','',contents)
+    for i in sections :
+	#print i
+	section_words = WProc.extract_words(i)
+	if (section_words[0] == "Forma") or (section_words[0] == "forma") :
+	    sec = CProc.get_contents(data,i)
+	    contents = contents + WProc.clean_contents_form(sec) + '\n'
+	elif section_words[0] in titles.TITLES :
+	    leng = [len(it) <= 3 for it in section_words]
+	    if leng.count(True) == 1 :
+		ind = leng.index(True)
+		try :
+		    section_words[ind] =  lang.LANGUAGES[section_words[ind]]
+		except KeyError : 
+		    section_words[ind] =  'Lengua desconocida'
+	    contents = contents + ' '.join(section_words) + '\n'
+	    #print i
+	    sec = CProc.get_contents(data,i)
+	    #print sec
+	    contents = contents + WProc.clean_contents(sec) + '\n'
+	    #print i 
+	    #print '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+	    #print sec
+	    #print '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+	    #print contents
+	    #print '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+	
+    contents = FProc.clean(contents)
     return contents
        
 

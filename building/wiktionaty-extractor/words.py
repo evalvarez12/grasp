@@ -39,7 +39,6 @@ class Words :
 		else :
 		    replacement = ' '.join(words)
 		
-	    #print i,replacement
 	    new_data = new_data.replace(i,replacement)
 	return new_data
 	    
@@ -103,11 +102,22 @@ class Words :
     
     def clean_contents(self,data) :
 	new_data = self.solve_keys(data)
-	new_data = self.solve_squares(data)
+	new_data = self.solve_squares(new_data)
 	new_data = self.single_squares_re.sub(r'',new_data)
 	new_data = self.apos_re.sub(r'\1',new_data)
 	new_data = self.quot_re.sub(r'\1',new_data)
 	new_data = self.lgt_re.sub(r'',new_data)
+	
+	return new_data
+    
+    def clean_contents_form(self,data) :
+	new_data = self.solve_keys_forma(data)
+	#new_data = self.solve_squares(data)
+	#new_data = self.single_squares_re.sub(r'',new_data)
+	#new_data = self.apos_re.sub(r'\1',new_data)
+	#new_data = self.quot_re.sub(r'\1',new_data)
+	#new_data = self.lgt_re.sub(r'',new_data)
+	
 	
 	return new_data
 	
