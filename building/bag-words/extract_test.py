@@ -12,7 +12,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(ext.process_line("([{-%&/word?!_.;:}])"),["word"])
 	
     def test3(self) :
-	self.assertEqual(ext.process_line(" words ..."),["words"])
+	self.assertEqual(ext.process_line(" words..."),["words"])
 
     def test4(self) :
 	self.assertEqual(ext.process_line("this is a 23241"),["this", "is", "a"])

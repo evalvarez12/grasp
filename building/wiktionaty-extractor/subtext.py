@@ -38,25 +38,26 @@ def get_contents(CProc,WProc,FProc,data) :
     for i in sections :
 	#print i
 	section_words = WProc.extract_words(i)
-	if (section_words[0] == "Forma") or (section_words[0] == "forma") :
-	    sec = CProc.get_contents(data,i)
-	    contents = contents + WProc.clean_contents_form(sec) + '\n'
-	elif section_words[0] in titles.TITLES :
-	    try :
-		section_words[-1] = lang.LANGUAGES[section_words[-1]]
-	    except KeyError :
+	if section_words :
+	    if (section_words[0] == "Forma") or (section_words[0] == "forma") :
+		sec = CProc.get_contents(data,i)
+		contents = contents + WProc.clean_contents_form(sec) + '\n'
+	    elif section_words[0] in titles.TITLES :
 		try :
-		    section_words[-2] = lang.LANGUAGES[section_words[-2]]
+		    section_words[-1] = lang.LANGUAGES[section_words[-1]]
 		except KeyError :
-		    pass
+		    try :
+			section_words[-2] = lang.LANGUAGES[section_words[-2]]
+		    except KeyError :
+			pass
+		    else :
+			contents = contents + ' '.join(section_words) + '\n'
+			sec = CProc.get_contents(data,i)
+			contents = contents + WProc.clean_contents(sec) + '\n'
 		else :
 		    contents = contents + ' '.join(section_words) + '\n'
 		    sec = CProc.get_contents(data,i)
 		    contents = contents + WProc.clean_contents(sec) + '\n'
-	    else :
-		contents = contents + ' '.join(section_words) + '\n'
-		sec = CProc.get_contents(data,i)
-		contents = contents + WProc.clean_contents(sec) + '\n'
 	    
 	    #leng = [len(it) <= 3 for it in section_words]
 	    #if leng.count(True) == 1 :

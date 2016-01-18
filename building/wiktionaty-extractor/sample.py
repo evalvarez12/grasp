@@ -13,7 +13,7 @@ lines_index = sub.get_lines(ContsProc,INDEX_LINES,CORPUS)
 command = "rm samples.txt"
 subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
 
-for i in range(50) :
+for i in range(200) :
     index = lines_index[i]
     #index = random.choice(lines_index)
     command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
