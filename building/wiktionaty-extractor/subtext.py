@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 import re
 import subprocess
-import spanish.lang as lang
-import spanish.titles as titles
+import procs.spanish.lang as lang
+import procs.spanish.titles as titles
 
 
 def get_lines(CProc,index_file,corpus) :
