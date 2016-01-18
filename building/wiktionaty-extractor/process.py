@@ -1,7 +1,7 @@
-import contents as conts
-import words as words
+import procs.contents as conts
+import procs.words as words
 import subtext as subs
-import formt as formt
+import procs.formt as formt
 import re
 
 

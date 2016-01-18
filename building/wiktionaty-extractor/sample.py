@@ -1,19 +1,19 @@
 # -*- coding: UTF-8 -*-
-import regs as regs
 import subtext as sub
+import procs.contents as conts
 import subprocess
 import random
 
 CORPUS = '/home/eduardo/Trabajo/wikidumps/dumps/eswiktionary-20151226-pages-articles-multistream.xml'
-INDEX = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
+INDEX_LINES = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
 
-
-lines_index = sub.get_lines(INDEX,CORPUS)
+ContsProc = conts.Contents()
+lines_index = sub.get_lines(ContsProc,INDEX_LINES,CORPUS)
 
 command = "rm samples.txt"
 subprocess.Popen(command,stdout=subprocess.PIPE,shell=True)
 
-for i in range(10) :
+for i in range(50) :
     index = lines_index[i]
     #index = random.choice(lines_index)
     command = "sed -n '" + str(index[0]) + "," + str(index[1]) + "p' " + CORPUS + " >> samples.txt"
