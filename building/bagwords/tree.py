@@ -14,7 +14,7 @@ class Tree(object) :
         
       try :
         self.trees[word[0]].insert_word(word[1:],times)
-      except RuntimeError as re :
+      except RuntimeError :
 	  print "RECUSION ERROR ON WORD :", word
 	  
     else :
@@ -24,7 +24,7 @@ class Tree(object) :
     if word  :
       try :
         return self.trees[word[0]].word_count(word[1:])
-      except :
+      except KeyError :
 	print "No word in tree " + word
 
     else :

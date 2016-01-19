@@ -1,12 +1,12 @@
 import os
-import building.extractor.extract as ext
-import building.extractor.db as db
-import building.extractor.tree as tr
+import building.bagwords.extract as ext
+import building.bagwords.db as db
+import building.bagwords.tree as tr
 
 
 
-rootDir = '/home/bruno/Eduardo/text/'
-#rootDir = '/home/eduardo/Trabajo/text/'
+#rootDir = '/home/bruno/Eduardo/text/'
+rootDir = '/home/eduardo/Trabajo/wikidumps/wikipedia-extractor/text/'
 
 
 t=tr.Tree()
@@ -14,17 +14,17 @@ t=tr.Tree()
 for dirname, subdirList, fileList in os.walk(rootDir) :
     print 'Working in directory: ',dirname
     for fname in fileList :
-	print 'Processing file: ',fname
+	#print 'Processing file: ',fname
 	complete_fname =  dirname + '/' + fname
-	words=ext.processFile(complete_fname)
+	words=ext.process_file(complete_fname)
 	
 	
 	for i in words :
             if len(i)>3 :
 		try :
-                    t.insert_word(i)
+                    t.insert_word(i.lower())
                 except :
 		    print "TREE ERROR ON WORD: ",i
 		    print "FILE: ",complete_fname
 	
-db.dump(t,'train.db')
+db.dump(t,'source.db')
