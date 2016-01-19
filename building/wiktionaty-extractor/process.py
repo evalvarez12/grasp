@@ -11,10 +11,12 @@ ContsProc = conts.Contents()
 FormatProc = formt.Format()
 
 
-CORPUS = 'samples.txt'
-INDEX_LINES = 'samples-index.txt'
+CORPUS = '/home/eduardo/Trabajo/wikidumps/dumps/eswiktionary-20151226-pages-articles-multistream.xml'
+INDEX_LINES = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
 
-DB_NAME = 'source.db'
+
+
+DB_NAME = '../../source.db'
 
 indexes = subs.get_lines(ContsProc,INDEX_LINES,CORPUS)
 con = lite.connect(DB_NAME)
@@ -35,8 +37,9 @@ with con :
 	    #  TO CATCH LAST REBELS - SO FAR NOT NEDEED
 	    try :
 		contents = subs.get_contents(ContsProc,WordsProc,FormatProc,sub_text)
-		s='INSERT INTO dic VALUES(' + '"' + title + '"'  + ',"' + contents + '")'
-		cur.execute(s)
+		if contents :
+		    s='INSERT INTO dic VALUES(' + '"' + title + '"'  + ',"' + contents + '")'
+		    cur.execute(s)
 	    except :
 		print "ERROR ON TITLE: ",title
 	

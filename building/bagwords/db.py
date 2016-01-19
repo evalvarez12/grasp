@@ -28,7 +28,7 @@ def insertWord(word,db_name) :
         if data :
 	    cur.execute("UPDATE bag SET times = times + 1 WHERE rowid = " + str(data[0]))
         else :
-	    cur.execute("INSERT INTO Counts VALUES(" + "'" + word + "'"  + ",1)")
+	    cur.execute("INSERT INTO bag VALUES(" + "'" + word + "'"  + ",1)")
 	   
 	   
 	   

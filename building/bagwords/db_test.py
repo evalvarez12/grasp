@@ -28,7 +28,7 @@ class TestDB(unittest.TestCase) :
 	con=lite.connect(db_name)
 	with con  :
 	    cur = con.cursor() 
-	    cur.execute("SELECT * FROM Counts")
+	    cur.execute("SELECT * FROM bag")
 	    a=cur.fetchall()
 	    self.assertItemsEqual(a,compare) 
 	    
