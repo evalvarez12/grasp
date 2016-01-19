@@ -25,8 +25,13 @@ class Contents :
 	if content :
 	    return content.group(1)
 	else :
-	    return None
-	
+	    return ''
+	    #reg = '={2,4}' + content_title + '={2,4}(.*?)(?=</text>)'
+	    #content = re.search(reg,data,re.UNICODE | re.DOTALL)
+	    #if content :
+		#return content.group(1)
+	    #else :
+		#return ''
 	
     #def extract_words(self,data) :
 	#words = self.words_re.findall(data)

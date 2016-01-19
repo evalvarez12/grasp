@@ -29,28 +29,14 @@ with con :
 	    #Double check if title is correct	
 	    title = ContsProc.find_title(sub_text)
 	    if title != index[2] :
-		print "ERROR EN  TITULOS"
-		#raise title_exeption()
-	    
-	    #print title
+		print "ERROR EN  TITULOS",title
+		pass	
+
+	    #  TO CATCH LAST REBELS - SO FAR NOT NEDEED
 	    try :
 		contents = subs.get_contents(ContsProc,WordsProc,FormatProc,sub_text)
 		s='INSERT INTO dic VALUES(' + '"' + title + '"'  + ',"' + contents + '")'
 		cur.execute(s)
 	    except :
 		print "ERROR ON TITLE: ",title
-		
-	    
-	    
-	    #contents = '--' + title + '--\n' + contents
-	    #print contents
-		
-	    
-	    
-	
-	
-	
-	    
- 
-
 	
