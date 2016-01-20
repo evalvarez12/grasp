@@ -20,11 +20,10 @@ for dirname, subdirList, fileList in os.walk(rootDir) :
 	
 	
 	for i in words :
-            if len(i)>3 :
-		try :
-                    t.insert_word(i.lower())
-                except :
-		    print "TREE ERROR ON WORD: ",i
-		    print "FILE: ",complete_fname
+	    try :
+		t.insert_word(i.lower())
+            except :
+		print "TREE ERROR ON WORD: ",i
+		print "FILE: ",complete_fname
 	
 db.dump(t,'source.db')
