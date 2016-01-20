@@ -10,7 +10,7 @@ class TestExtract(unittest.TestCase) :
 	self.assertEqual(ContProc.find_sections(ur" Precontenido === {{verbo circunstáncial |fr}} === \n primer_contenido \n === {{sustantivo|es}} masculino ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ==="),[ur" {{verbo circunstáncial |fr}} ",ur" {{sustantivo|es}} masculino ",ur" {{algo|ru}} ",ur" FIN "])	
 	   
     def test2(self) :
-	self.assertEqual(ContProc.get_contents(ur" Precontenido === {{verbo circunstáncial |fr}} === \n primer_contenido \n === {{sustantivo|es}} masculino ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ===",u" {{verbo circunstáncial |fr}} "),ur" \n primer_contenido \n ")	
+	self.assertEqual(ContProc.get_contents(u" Precontenido === {{verbo circunstáncial |fr}} === \n primer_contenido \n=== {{sustantivo|es}} masculino ===segundo contenido === {{algo|ru}} === TERCERcontenído === FIN ===",u" {{verbo circunstáncial |fr}} "),u" \n primer_contenido \n")	
 	
 
 if __name__ == '__main__':

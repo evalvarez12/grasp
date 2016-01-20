@@ -33,25 +33,26 @@ def insertWord(word,db_name) :
 	   
 	   
 def dump(t,db_name) :
-  con=lite.connect(db_name)
-  with con  :
-    cur = con.cursor() 
-    a=t.traverse('')
-    cur.execute("DROP TABLE if exists bag")
-    cur.execute("CREATE TABLE bag(word TEXT, times INT)")
-    for k,v in a.iteritems() :
-      s="INSERT INTO bag VALUES(" + "'" + k + "'"  + "," + str(v) + ")"
-      cur.execute(s)
+    con=lite.connect(db_name)
+    with con  :
+	con.text_factory = str
+	cur = con.cursor() 
+	a=t.traverse('')
+	cur.execute("DROP TABLE if exists bag")
+	cur.execute("CREATE TABLE bag(word TEXT, times INT)")
+	for k,v in a.iteritems() :
+	    s="INSERT INTO bag VALUES(" + "'" + k + "'"  + "," + str(v) + ")"
+	    cur.execute(s)
 
 
 def load(t,db_name) :
-  con=lite.connect(db_name)
-  with con :
-    con.text_factory = str
-    cur = con.cursor() 
-    s="SELECT * FROM bag"
-    cur.execute(s)
-    items = cur.fetchall()
-    for i in items :
-      t.insert_word(str(i[0]),i[1])
+    con=lite.connect(db_name)
+    with con :
+	con.text_factory = str
+	cur = con.cursor() 
+	s="SELECT * FROM bag"
+	cur.execute(s)
+	items = cur.fetchall()
+	for i in items :
+	    t.insert_word(str(i[0]),i[1])
     	   

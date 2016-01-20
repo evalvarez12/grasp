@@ -21,6 +21,7 @@ DB_NAME = '../../source.db'
 indexes = subs.get_lines(ContsProc,INDEX_LINES,CORPUS)
 con = lite.connect(DB_NAME)
 with con :
+    con.text_factory = str
     cur = con.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS dic(word TEXT, def INT)")
     with open(CORPUS,'r') as corpus :

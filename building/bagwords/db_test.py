@@ -36,7 +36,7 @@ class TestDB(unittest.TestCase) :
 t=tr.Tree()
 list_words =["test","command","cat","caterpillar","chown","chmod","chroot","table","word","words"]
 for i in list_words :
-  t.insert_word(i)
+    t.insert_word(i)
 
 t.insert_word("words",4)
 t.insert_word("word",1)
@@ -44,7 +44,7 @@ t.insert_word("word",1)
 
 
 class TestTree(unittest.TestCase) :
-  #def test_create_tree(self) :
+    #def test_create_tree(self) :
     #self.failUnlessRaises(ValueError,tr.Tree)
       
   def test_dump_load(self) :
@@ -58,6 +58,6 @@ class TestTree(unittest.TestCase) :
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()
 
       
