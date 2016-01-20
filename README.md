@@ -1,7 +1,7 @@
 # Humble Lexicon
 Spanish
 
-[![Build Status](https://travis-ci.org/evalvarez12/Humble-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
+[![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
 
 
 Objective
