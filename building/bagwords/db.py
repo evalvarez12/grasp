@@ -47,6 +47,7 @@ def dump(t,db_name) :
 def load(t,db_name) :
   con=lite.connect(db_name)
   with con :
+    con.text_factory = str
     cur = con.cursor() 
     s="SELECT * FROM bag"
     cur.execute(s)

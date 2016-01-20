@@ -26,7 +26,6 @@ class Tree(object) :
         return self.trees[word[0]].word_count(word[1:])
       except KeyError :
 	print "No word in tree " + word
-
     else :
       return self.number
       
