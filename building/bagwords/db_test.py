@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import db as db
 import unittest
 import extract as ext
@@ -5,7 +6,7 @@ import sqlite3 as lite
 import tree as tr
 
 
-text = "Some test text to test the text count in a test text count"
+text = u"Una prueba con palabras con ácentos y demas ñoñerias"
 
 
 db_name='test.db'
@@ -23,7 +24,7 @@ class TestDB(unittest.TestCase) :
 	processed = ext.process_line(text)
 	for i in processed :
 	    db.insertWord(i,db_name)
-	compare=[("Some",1),("test",3),("text",3),("to",1),("the",1),("count",2),("in",1),("a",1)]    
+	compare=[(u"Una",1),(u"prueba",1),(u"palabras",1),(u"con",2),(u"ácentos",1),(u"y",1),(u"demas",1),(u"ñoñerias",1)]    
 	
 	con=lite.connect(db_name)
 	with con  :
@@ -34,16 +35,16 @@ class TestDB(unittest.TestCase) :
 	    
 
 t=tr.Tree()
-list_words =["test","command","cat","caterpillar","chown","chmod","chroot","table","word","words"]
+list_words =[u"prueba",u"niño",u"árbol",u"día",u"gato",u"perro"]
 for i in list_words :
     t.insert_word(i)
 
-t.insert_word("words",4)
-t.insert_word("word",1)
+t.insert_word(u"día",4)
+t.insert_word(u"árbol",1)
 
 
 
-class TestTree(unittest.TestCase) :
+class TestTreeDB(unittest.TestCase) :
     #def test_create_tree(self) :
     #self.failUnlessRaises(ValueError,tr.Tree)
       
@@ -53,6 +54,8 @@ class TestTree(unittest.TestCase) :
     db.load(t2,'test.db')
     a=t.traverse('')
     b=t2.traverse('')
+    #print a,b
+    #b = [unicode(i,'utf-8') for i in b]
     self.assertItemsEqual(a,b) 
     
 

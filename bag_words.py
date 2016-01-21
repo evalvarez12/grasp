@@ -16,7 +16,7 @@ for dirname, subdirList, fileList in os.walk(rootDir) :
     for fname in fileList :
 	#print 'Processing file: ',fname
 	complete_fname =  dirname + '/' + fname
-	words=ext.process_file(complete_fname)
+	words = ext.process_file(complete_fname)
 	
 	
 	for i in words :

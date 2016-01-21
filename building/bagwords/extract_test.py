@@ -6,13 +6,13 @@ import unittest
 class TestExtract(unittest.TestCase) :
     
     def test1(self) :
-	self.assertEqual(ext.process_line("one two"),["one","two"])
+	self.assertEqual(ext.process_line(u"oné ñoño"),[u"oné",u"ñoño"])
 
     def test2(self) :
 	self.assertEqual(ext.process_line("([{-%&/word?!_.;:}])"),["word"])
 	
     def test3(self) :
-	self.assertEqual(ext.process_line(" words..."),["words"])
+	self.assertEqual(ext.process_line(" -words..."),["words"])
 
     def test4(self) :
 	self.assertEqual(ext.process_line("this is a 23241"),["this", "is", "a"])

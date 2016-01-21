@@ -9,7 +9,8 @@ words_re = re.compile(r'\b([^\W\d_]+)\b',re.UNICODE) #all character on unicode w
 
 def process_file(filename) :
     with open(filename, 'r') as data :
-        return process_text(data.read())
+	text = unicode(data.read(),'utf-8')
+        return process_text(text)
     #except EnvironmentError : 
         #print "ERROR: Can't load file"
         #return None

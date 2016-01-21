@@ -22,6 +22,7 @@ def createNewTable(db_name) :
 def insertWord(word,db_name) :
     con=lite.connect(db_name)
     with con  :
+	#con.text_factory = str
         cur = con.cursor() 
         cur.execute("SELECT rowid FROM bag WHERE word = '" + word + "'")
         data=cur.fetchone()
@@ -35,12 +36,13 @@ def insertWord(word,db_name) :
 def dump(t,db_name) :
     con=lite.connect(db_name)
     with con  :
-	con.text_factory = str
+	#con.text_factory = str
 	cur = con.cursor() 
 	a=t.traverse('')
 	cur.execute("DROP TABLE if exists bag")
 	cur.execute("CREATE TABLE bag(word TEXT, times INT)")
 	for k,v in a.iteritems() :
+	    #print repr(k)
 	    s="INSERT INTO bag VALUES(" + "'" + k + "'"  + "," + str(v) + ")"
 	    cur.execute(s)
 
@@ -48,11 +50,12 @@ def dump(t,db_name) :
 def load(t,db_name) :
     con=lite.connect(db_name)
     with con :
-	con.text_factory = str
+	#con.text_factory = str
 	cur = con.cursor() 
 	s="SELECT * FROM bag"
 	cur.execute(s)
 	items = cur.fetchall()
 	for i in items :
-	    t.insert_word(str(i[0]),i[1])
+	    #print i
+	    t.insert_word(i[0],i[1])
     	   
