@@ -1,5 +1,5 @@
-# Humble Lexicon
-Spanish
+# Grasp
+A text processor that identifies uncommon/foreign words, marks them and provides a definition.
 
 [![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
 
