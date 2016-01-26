@@ -4,21 +4,41 @@ A text processor that identifies uncommon/foreign words, marks them and provides
 [![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
 
 
-Objective
-=========
+Source
+==========
+Grasp is powered by [es.wikipedia.org](https://es.wikipedia.org/wiki/Wikipedia:Portada) as the training corpus and [es.wiktionary.org](https://es.wiktionary.org/wiki/Wikcionario:Portada) as the definitions sources.
 
-To have a machine capable of translating complicated phrases and words into simple ones. Understanding simple
-as using the most common words in Spanish.
-
-Development
+Example
 ===========
+ 
+Input :
+ 
+ 
+	En informática, un núcleo o kernel (de la raíz germánica Kern, núcleo, hueso) es un software que constituye una parte fundamental del sistema operativo.
+	
+Output :
 
-The first step is to recognize which words or phrases are uncommon. To do so we need to process large
-amounts of text and keep count of all the words found. 
+tado es el siguiente:
 
-Once we have identified what needs to be simplified we need to build a substantial corpus of synonims or alternate uses 
-of such phrases/words. 
-Using n-grams we and the traininng text we can replace the uncommon text by common one which has the highest 
-probability of appearing in text.
+	En informática, un núcleo o [[kernel]] (de la raíz [[germánica]] Kern, núcleo, hueso) es un software que constituye una parte fundamental del sistema operativo.
+
+	--- kernel ---
+	sustantivo masculino Español
+	1 Informática: Núcleo de un sistema operativo, es decir, bloque de código 
+	con la parte central del funcionamiento y arranque del sistema.
+	sinónimo núcleo.
+	sustantivo Inglés
+	1: núcleo de un fruto seco o similar, parte generalmente comestible del mismo.
+	2: Núcleo, centro.
+	3: semilla, grano, particularmente de trigo o maíz.
+	4: hueso de un fruto, carozo, cuesco, güito.
+
+	--- germánica ---
+	1: forma adjetivo lengua: Español germánico género femenino .
+	
+Coming soon 
+============
+An API that facilitates integration into websites.
+
 
 
