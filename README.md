@@ -1,8 +1,8 @@
 # Grasp
-A text processor that identifies uncommon/foreign words, marks them and provides a definition.
-
 [![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
 
+
+A text processor that identifies uncommon/foreign words, marks them and provides a definition.
 
 Source
 ==========
@@ -14,13 +14,15 @@ Example
 Input :
  
  
-	En informática, un núcleo o kernel (de la raíz germánica Kern, núcleo, hueso) es un software que constituye una parte fundamental del sistema operativo.
+	En informática, un núcleo o kernel (de la raíz germánica Kern, núcleo, hueso) es un software
+	que constituye una parte fundamental del sistema operativo.
 	
 Output :
 
 tado es el siguiente:
 
-	En informática, un núcleo o [[kernel]] (de la raíz [[germánica]] Kern, núcleo, hueso) es un software que constituye una parte fundamental del sistema operativo.
+	En informática, un núcleo o [[kernel]] (de la raíz [[germánica]] Kern, núcleo, hueso) es un software
+	que constituye una parte fundamental del sistema operativo.
 
 	--- kernel ---
 	sustantivo masculino Español
