@@ -1,5 +1,5 @@
 # Grasp
-[![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/grasp)
+[![Build Status](https://travis-ci.org/evalvarez12/grasp.svg?branch=master)](https://travis-ci.org/evalvarez12/grasp)
 
 
 A text processor that identifies uncommon/foreign words, marks them and provides a definition.
