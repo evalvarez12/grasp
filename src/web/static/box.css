@@ -1,0 +1,54 @@
+.main {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.main .activator {
+    height: 200px;
+    width: 200px;
+    float: left;
+    display: block;
+}
+.img {
+    border: 1px solid maroon;
+    text-align: center;
+    margin: 15px;
+    height: 168px;
+    width: 168px;
+    float: left;
+}
+.content {
+    display: none;
+    margin: 15px;
+}
+.activator:hover {
+    width: 500px;
+}
+.activator:hover .content {
+    display: block;
+}
+.activator:hover .img {
+    float: left;
+}
+
+/*Second method*/
+
+div.appear {
+    width: 250px;
+    border: #000 2px solid;
+    background:#F8F8F8;
+    position: relative;
+    top: 5px;
+    left:15px;
+    display:none;
+    padding: 0 20px 20px 20px;
+    z-index: 1000000;
+}
+div.hover  {
+    cursor:pointer;
+    width: 5px;
+}
+div.hover:hover div.appear {
+    display:block;
+}

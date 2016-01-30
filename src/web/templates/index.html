@@ -1,0 +1,52 @@
+$def with (todos)
+<html>
+<head>
+<link rel="stylesheet" href="static/box.css" type="text/css">
+<script type="text/javascript" src="static/box.js">
+</script>
+    <title>A list</title>
+</head>
+<body>
+    <h1>HEAD</h1>
+Esto es <span style="cursor:help;color:blue;font-weight:bold" title="Span span \n Espan">span</span>
+otras
+pene
+<div class="hover">
+  ano dgdfgdcv fgfdgd
+    <div class="appear">
+       <h1>My popup</h1>Hitherto and whenceforth.
+    </div>
+</div>
+letras
+
+<ul>
+$for todo in todos:
+    <li id="t$todo.id">$todo.title</li>
+</ul>
+
+<form method="post" action="add">
+    <p><textarea type="text"
+       cols="40"
+       rows="5"
+       style="width:200px; height:50px;"
+       name="title"
+       id="Text1"
+       value="" >
+   </textarea>
+<!-- <p><input type="text" name="title" />  -->
+    <input type="submit" value="Add" /></p>
+</form>
+
+
+<div>On Mouse Over/Out Expand/Contract Div Container</div><br>
+
+
+<div class='main'>
+    <div class='activator'>
+        <div class="img">[img]</div>
+        <div class="content">Enterprise engenderment accelerates initiative platforms, reducing staffing components, integration of technical accessibility, resulting in bottom line pluralisms, benefit-wise. Incidental re-sizing staff requirements through attrition can be accelerated by paradigm shifts and focusing on core suitability and cross-training.</div>
+    </div>
+</div>
+
+</body>
+</html>
