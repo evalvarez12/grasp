@@ -1,0 +1,28 @@
+$def with (text,definitions)
+<html>
+<head>
+<link rel="stylesheet" href="static/box.css" type="text/css">
+<script type="text/javascript" src="static/box.js">
+</script>
+    <title>Grasp</title>
+</head>
+<body>
+    <h1>Grasp</h1>
+    $for i in text :
+        $for j in i :
+            $if j in definitions.keys() :
+                <span class="hover">
+                $j
+                <span class="appear">$defintions[j]</span>
+                </span>
+            $else :
+                $j
+        <br>
+
+<form  action="clear">
+    <input type="submit" value="clear" /></p>
+</form>
+
+
+</body>
+</html>

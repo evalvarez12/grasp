@@ -1,4 +1,6 @@
-.main {
+
+/*First methon cant get js to work*/
+/*.main {
     height: 200px;
     width: 200px;
     border: 1px solid black;
@@ -30,11 +32,11 @@
 }
 .activator:hover .img {
     float: left;
-}
+}*/
 
 /*Second method*/
 
-div.appear {
+span.appear {
     width: 250px;
     border: #000 2px solid;
     background:#F8F8F8;
@@ -43,12 +45,12 @@ div.appear {
     left:15px;
     display:none;
     padding: 0 20px 20px 20px;
-    z-index: 1000000;
+    z-index: 100;
 }
-div.hover  {
+span.hover  {
     cursor:pointer;
     width: 5px;
 }
-div.hover:hover div.appear {
+span.hover:hover span.appear {
     display:block;
 }
