@@ -50,6 +50,12 @@ class solve :
                         if fetch :
                             word_def = unicode(fetch[0],'utf-8')
                             defintions[i]=word_def
+                        else :
+                            s = 'word = "{}"'.format(j)
+                            fetch = db.select('dic',what='def',where=s)
+                            if fetch :
+                                word_def = unicode(fetch[0],'utf-8')
+                                defintions[i]=word_def
 
         return render.show(text,definitions)
 
