@@ -1,0 +1,136 @@
+.header { margin-bottom: 120px;}
+
+
+.header img {
+    /*float: left;*/
+    width: 220px;
+    height: 130px;
+    background-color: #ffffff;
+    opacity: 0.9;
+    -webkit-box-shadow: 0px 0px 50px 50px #fff;
+    -moz-box-shadow: 0px 0px  50px 50px #fff;
+    box-shadow: 0px 0px 50px 50px #fff;
+    -webkit-border-radius: 105px;
+    -moz-border-radius: 105px;
+    border-radius: 105px;
+}
+
+
+span.appear {
+    width: 250px;
+    border:  #4c6600 2px solid;
+    background: #ace600;
+    position: relative;
+    top: 5px;
+    left:15px;
+    display:none;
+    padding: 0 20px 20px 20px;
+    z-index: 3;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+span.hover  {
+    cursor:pointer;
+    width: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #c6ff1a;
+}
+span.hover:hover span.appear {
+    display:block;
+}
+
+#wrapper{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.background {
+    position:fixed;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+
+.background:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-image: url('../background.jpg');
+   opacity: 0.08;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+}​
+
+input[type="text"],
+textarea {
+    width: 700px;
+    height: 600px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border: 0 none;
+    resize: none;
+    overflow: auto;
+    font-size: 18px;
+}
+
+input[type="submit"] {
+    padding:5px 15px;
+    background:#ffd633;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+/*body {
+    background-image: url("paper.gif");
+}*/
+
+
+/*First methon cant get js to work*/
+/*.main {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.main .activator {
+    height: 200px;
+    width: 200px;
+    float: left;
+    display: block;
+}
+.img {
+    border: 1px solid maroon;
+    text-align: center;
+    margin: 15px;
+    height: 168px;
+    width: 168px;
+    float: left;
+}
+.content {
+    display: none;
+    margin: 15px;
+}
+.activator:hover {
+    width: 500px;
+}
+.activator:hover .content {
+    display: block;
+}
+.activator:hover .img {
+    float: left;
+}*/
+
+/*Second method*/

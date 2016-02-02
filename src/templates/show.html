@@ -1,27 +1,35 @@
 $def with (text,definitions)
 <html>
 <head>
-<link rel="stylesheet" href="static/box.css" type="text/css">
-
+    <link rel="stylesheet" href="static/css/box.css" type="text/css">
     <title>Grasp</title>
 </head>
 <body>
-    <h1>Grasp</h1>
-    $for i in text :
-        $for j in i :
-            $if j in definitions.keys() :
-                <span class="hover">
-                $j
-                <span class="appear">$definitions[j]</span>
-                </span>
-            $else :
-                $j
-        <br>
 
-<form  action="clear">
-    <input type="submit" value="clear" /></p>
-</form>
+    <div class="background">
+        <div class="content">
+            <div id="wrapper">
+                <div class="header">
+                    <img class="shadow-effect" src="static/logo.png" alt="logo">
+                </div>
+                $for i in text :
+                    $for j in i :
+                        $if j in definitions.keys() :
+                            <span class="hover">
+                            $j
+                            <span class="appear">$definitions[j]</span>
+                            </span>
+                        $else :
+                            $j
+                        <br>
 
+                <form  action="clear">
+                    <input type="submit" value="clear" /></p>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

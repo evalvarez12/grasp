@@ -1,30 +1,29 @@
 $def with (content)
 <html>
 <head>
-<link rel="stylesheet" href="static/box.css" type="text/css">
-
+    <link rel="stylesheet" href="static/css/box.css" type="text/css">
     <title>Grasp</title>
 </head>
 <body>
-    <h1>Grasp</h1>
 
-<!-- <span class="hover">
-  ano dgdfgdcv fgfdgd
-    <span class="appear"> <h1>My popup</h1>Hitherto and whenceforth.</span>
-</span> -->
+    <div class="background">
+        <div class="content">
+            <div id="wrapper">
+                <div class="header">
+                    <img class="shadow-effect" src="static/logo.png" alt="logo">
+                </div>
 
+                <form method="post" action="solve">
+                    <p><textarea type="text"
+                        placeholder="Un simplificador de texto"
+                        name="text">
+                    </textarea>
+                    <input type="submit" value="Procesar" /></p>
+                </form>
 
-<form method="post" action="solve">
-    <p><textarea type="text"
-       cols="110"
-       rows="40"
-       style="width:200px; height:50px;"
-       name="text">
-   </textarea>
-<!-- <p><input type="text" name="title" />  -->
-    <input type="submit" value="Add" /></p>
-</form>
-
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
