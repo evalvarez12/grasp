@@ -16,7 +16,7 @@ INDEX_LINES = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
 
 
 
-DB_NAME = '../source.db'
+DB_NAME = '/home/eduardo/Trabajo/grasp/src/source.db'
 
 indexes = subs.get_lines(ContsProc,INDEX_LINES,CORPUS)
 con = lite.connect(DB_NAME)
@@ -29,11 +29,11 @@ with con :
 	for index in indexes :
 	    sub_text = ''.join(corpus[index[0]-1:index[1]-1])
 	    sub_text = unicode(sub_text, "utf-8")
-	    #Double check if title is correct	
+	    #Double check if title is correct
 	    title = ContsProc.find_title(sub_text)
 	    if title != index[2] :
-		print "ERROR EN  TITULOS",title
-		pass	
+		print "Mismatch on titles: ",title
+		pass
 
 	    #  TO CATCH LAST REBELS - SO FAR NOT NEDEED
 	    try :
@@ -42,5 +42,5 @@ with con :
 		    s='INSERT INTO dic VALUES(' + '"' + title + '"'  + ',"' + contents + '")'
 		    cur.execute(s)
 	    except :
-		print "ERROR ON TITLE: ",title
-	
+		print "Error processing word: ",title
+		# 119 Error on last review
