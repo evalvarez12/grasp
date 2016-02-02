@@ -2,8 +2,7 @@ $def with (text,definitions)
 <html>
 <head>
 <link rel="stylesheet" href="static/box.css" type="text/css">
-<script type="text/javascript" src="static/box.js">
-</script>
+
     <title>Grasp</title>
 </head>
 <body>
@@ -13,7 +12,7 @@ $def with (text,definitions)
             $if j in definitions.keys() :
                 <span class="hover">
                 $j
-                <span class="appear">$defintions[j]</span>
+                <span class="appear">$definitions[j]</span>
                 </span>
             $else :
                 $j
