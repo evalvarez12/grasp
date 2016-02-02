@@ -16,7 +16,7 @@ INDEX_LINES = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
 
 
 
-DB_NAME = '../../source.db'
+DB_NAME = '../source.db'
 
 indexes = subs.get_lines(ContsProc,INDEX_LINES,CORPUS)
 con = lite.connect(DB_NAME)
