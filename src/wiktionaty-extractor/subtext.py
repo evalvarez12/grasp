@@ -5,8 +5,6 @@ import procs.spanish.lang as lang
 import procs.spanish.titles as titles
 
 
-subtitle_format = '->{}<-'
-
 def get_lines(CProc,index_file,corpus) :
     number_re = re.compile('\d+')
     marks = []
@@ -53,13 +51,11 @@ def get_contents(CProc,WProc,FProc,data) :
 		    except KeyError :
 			pass
 		    else :
-			segment = ' '.join(section_words)
-			contents = contents + subtitle_format.format(segment) + '\n'
+			contents = contents + ' '.join(section_words) + '\n'
 			sec = CProc.get_contents(data,i)
 			contents = contents + WProc.clean_contents(sec) + '\n'
 		else :
-		    segment = ' '.join(section_words)
-		    contents = contents + subtitle_format.format(segment) + '\n'
+		    contents = contents + ' '.join(section_words) + '\n'
 		    sec = CProc.get_contents(data,i)
 		    contents = contents + WProc.clean_contents(sec) + '\n'
 	    
