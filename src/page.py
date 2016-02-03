@@ -1,9 +1,10 @@
+# -*- coding: UTF-8 -*-
 import web
 import string
 import bagwords.extract as ext
 
 
-
+EXAMPLE_TEXT = u'Esto es un ejemplo de Grasp. \n Grasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas.\n Grasp esta alimentado por el Wikccionario(https://es.wiktionary.org) como fuente de las definiciones.'
 
 render = web.template.render('templates/')
 
@@ -14,9 +15,8 @@ db = web.database(dbn='sqlite', db='source.db')
 urls = (
     '/', 'index',
     '/solve', 'solve',
-    '/clear', 'clear'
-
-
+    '/clear', 'clear',
+    '/example', 'example'
 )
 
 class index():
@@ -35,6 +35,12 @@ class solve :
         winput = web.input()
         text = web_format(winput.text)
         definitions = process(winput.text)
+        return render.show(text,definitions)
+
+class example :
+    def GET(self) :
+        text = web_format(EXAMPLE_TEXT)
+        definitions = process(EXAMPLE_TEXT)
         return render.show(text,definitions)
 
 

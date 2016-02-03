@@ -10,14 +10,23 @@ $def with (content)
         <div class="content">
             <div class="header">
                 <img class="shadow-effect" src="static/logo.png" alt="logo">
+
+                <form mrthon="get" action="example">
+                    <input type="submit" id="example" value="?"/>
+                </form>
             </div>
+
+
+
             <div id="wrapper">
 
                 <form method="post" action="solve">
-                    <p><textarea type="text"
-                        name="text">
-                    </textarea>
-                    <input type="submit" value="Procesar" /></p>
+                    <div class="overlay">
+                        <p><textarea class="animated"
+                            type="text"
+                            name="text"> </textarea>
+                        <input type="submit" value="Procesar" id="process" /></p>
+                    </div>
                 </form>
 
             </div>
