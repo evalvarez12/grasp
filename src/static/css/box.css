@@ -7,14 +7,10 @@
 
 
 .header img {
-    /*float: left;*/
     width: 220px;
     height: 130px;
     background-color: #ffffff;
     opacity: 1;
-    -webkit-box-shadow: 0px 0px 50px 3px  #fff;
-    -moz-box-shadow: 0px 0px  50px 3px  #fff;
-    box-shadow: 0px 0px 50px 3px  #fff;
     -webkit-border-radius: 500px;
     -moz-border-radius: 500px;
     border-radius: 500px;
@@ -82,12 +78,11 @@ span.hover:hover span.appear {
 input[type="text"],
 textarea.animated {
     background: url('../textarea.png')  no-repeat;
-    /*background-origin: border-box;*/
     background-color : #ffffff;
     width: 700px;
     height: 600px;
-    /*-webkit-border-radius: 20px;*/
-    /*-moz-border-radius: 20px;*/
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
     border-radius: 20px;
     border: 1px solid #666666;
     resize: none;
@@ -111,14 +106,12 @@ textarea.animated:focus {
     -webkit-opacity: 1;
     -moz-opacity: 1;
     opacity: 1;
-    /*background-origin: border-box;*/
     background: url('../blank.png') no-repeat;
     background-color : #ffffff;
 
     outline: none !important;
     border:2px solid #cccc00;
     box-shadow: 0 0 10px #719ECE;
-    /*box-shadow: 0 0 10px #a6a6a6;*/
 
     -webkit-transition: 2s ease-in;
     -ms-transition: 2s ease-in;
