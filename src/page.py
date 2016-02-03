@@ -33,8 +33,8 @@ class clear:
 class solve :
     def POST(self) :
         winput = web.input()
-
-
+        text = web_format(winput.text)
+        definitions = process(winput.text)
         return render.show(text,definitions)
 
 
@@ -46,10 +46,10 @@ def web_format(content) :
     return result
 
 def def_format(definition) :
-    definition = definition.replace('\n','<br>')
-    definition = definition.replace('->','<h2>')
-    definition = definition.replace('<-','</h2>')
-    return definition
+    formated = definition.replace(u'\n',u'<br>')
+    # definition = definition.replace('->','<h2>')
+    # definition = definition.replace('<-','</h2>')
+    return formated
 
 
 def process(content) :
@@ -62,7 +62,7 @@ def process(content) :
             # count = db.query(s)
             s = 'word = "{}"'.format(word)
             count = db.select('bag',what='times',where=s)
-            print "COUNT:",count
+            # print "COUNT:",count
             count = count.list()
             if count :
                 if count[0]['times'] < 1500 :
@@ -73,7 +73,8 @@ def process(content) :
                     if fetch :
                         # word_def = unicode(fetch[0]['def'],'utf-8')
                         word_def = fetch[0]['def']
-                        definitions[j] = word_def
+                        definitions[j] = def_format(word_def)
+                        # print "DEFS:", repr(definitions[j])
                     else :
                         s = 'word = "{}"'.format(j)
                         fetch = db.select('dic',what='def',where=s)
@@ -82,6 +83,7 @@ def process(content) :
                             word_def = fetch[0]['def']
                             # word_def = unicode(fetch[0]['def'],'utf-8')
                             definitions[j] = def_format(word_def)
+                            # print "DEFS:", repr(definitions[j])
     return definitions
 
 if __name__ == "__main__":
