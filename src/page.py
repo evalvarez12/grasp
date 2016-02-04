@@ -71,7 +71,7 @@ def process(content) :
             # print "COUNT:",count
             count = count.list()
             if count :
-                if count[0]['times'] < 1500 :
+                if count[0]['times'] < 3000 :
                     # s = "SELECT def from dic where word = '" + i + "'"
                     # fetch = db.query(s)
                     fetch = db.select('dic',what='def',where=s)

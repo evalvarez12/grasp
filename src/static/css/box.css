@@ -32,7 +32,7 @@ span.appear {
     border-radius: 10px;
 }
 span.hover  {
-    padding:5px 15px;
+    padding:2px 2px;
     cursor:pointer;
     width: 2px;
     -webkit-border-radius: 5px;
