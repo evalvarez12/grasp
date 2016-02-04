@@ -1,5 +1,5 @@
 # Grasp
-[![Build Status](https://travis-ci.org/evalvarez12/Simple-Lexicon.svg?branch=master)](https://travis-ci.org/evalvarez12/Humble-Lexicon)
+[![Build Status](https://travis-ci.org/evalvarez12/grasp.svg?branch=master)](https://travis-ci.org/evalvarez12/grasp)
 
 
 A text processor that identifies uncommon/foreign words, marks them and provides a definition.
@@ -10,13 +10,13 @@ Grasp is powered by [es.wikipedia.org](https://es.wikipedia.org/wiki/Wikipedia:P
 
 Example
 ===========
- 
+
 Input :
- 
- 
+
+
 	En informática, un núcleo o kernel (de la raíz germánica Kern, núcleo, hueso) es un software
 	que constituye una parte fundamental del sistema operativo.
-	
+
 Output :
 
 tado es el siguiente:
@@ -26,7 +26,7 @@ tado es el siguiente:
 
 	--- kernel ---
 	sustantivo masculino Español
-	1 Informática: Núcleo de un sistema operativo, es decir, bloque de código 
+	1 Informática: Núcleo de un sistema operativo, es decir, bloque de código
 	con la parte central del funcionamiento y arranque del sistema.
 	sinónimo núcleo.
 	sustantivo Inglés
@@ -37,10 +37,7 @@ tado es el siguiente:
 
 	--- germánica ---
 	1: forma adjetivo lengua: Español germánico género femenino .
-	
-Coming soon 
+
+Coming soon
 ============
 An API that facilitates integration into websites.
-
-
-
