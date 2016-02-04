@@ -2,9 +2,14 @@
     width: 100%;
     background-color: #ffffff;
     margin: 0 auto;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
+
+body {
+    font-size: 19px;
+    font-family: 'Orator Std';
+}
 
 .header img {
     width: 220px;
@@ -19,33 +24,56 @@
 
 span.appear {
     width: 250px;
-    border:  #4c6600 2px solid;
-    background: #ace600;
-    position: relative;
-    top: 5px;
-    left:15px;
-    display:none;
-    padding: 0 20px 20px 20px;
-    z-index: 3;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    position: fixed;
+    top: 130px;
+    right: 0;
+    z-index: 12;
+    width:30%;
+    background-color: #4dc3ff;
+    box-shadow: 0 0 12px #006699;
+    opacity: 0;
+    height:100%;
+
+
+    -webkit-transition: 2s ease;
+    -ms-transition: 2s ease;
+    -moz-transition: 2s ease;
+    -o-transition: 2s ease;
+    transition: 2s ease;
 }
+
+
+
 span.hover  {
-    padding:2px 2px;
+    /*padding:1px 1px;*/
     cursor:pointer;
-    width: 2px;
+    /*width: 1px;*/
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
-    background: #c6ff1a;
+    border-radius: 15px;
+    /*border:  #0099e6 1px solid;*/
+    box-shadow: 0 0 10px #80d5ff;
+    background: #99ddff;
+    z-index: 12;
+
+
+    -webkit-transition: 2s ease;
+    -ms-transition: 2s ease;
+    -moz-transition: 2s ease;
+    -o-transition: 2s ease;
+    transition: 2s ease;
 }
+
+span.hover:hover {
+    box-shadow: 0 0 12px #006699;
+}
+
 span.hover:hover span.appear {
-    display:block;
+    opacity: 1;
 }
 
 #wrapper{
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -72,6 +100,9 @@ span.hover:hover span.appear {
 .content {
     position: relative;
     z-index: 2;
+    width : 100%;
+    height:100%;
+    overflow: auto;
 }​
 
 
@@ -79,7 +110,7 @@ input[type="text"],
 textarea.animated {
     background: url('../textarea.png')  no-repeat;
     background-color : #ffffff;
-    width: 700px;
+    width: 100%;
     height: 600px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -99,6 +130,12 @@ textarea.animated {
     display: block;
     margin-left: auto;
     margin-right: auto;
+
+    -webkit-transition: 2s ease-out;
+    -ms-transition: 2s ease-out;
+    -moz-transition: 2s ease-out;
+    -o-transition: 2s ease-out;
+    transition: 2s ease-out;
 }
 
 input[type="text"],
@@ -136,19 +173,42 @@ div.overlay{
     display:inline-block;
     position:absolute;
     margin-right: auto;
+    width: 60%;
 }
 
 #process {
-  position:absolute;
-  bottom:16px;
-  right:0px;
+    position: absolute;
+    bottom: 16px;
+    right: 0px;
 }
 
 
 #example {
-  position:absolute;
-  bottom:90px;
-  right:0px;
+    position: absolute;
+    top: 7px;
+    right: 3px;
+}
+
+#clear {
+    position: relative;
+    left: 10px;
+    top: 45px;
+}
+
+#text {
+    float: left;
+    width:70%;
+    height:100%;
+}
+
+#defs {
+    width:30%;
+    float: right;
+    background-color:#cceeff;
+    opacity: 0.6;
+    height:100%;
+    /*border: 1px solid #80d5ff;*/
+    box-shadow: 0 0 20px #80d5ff;
 }
 
 /*

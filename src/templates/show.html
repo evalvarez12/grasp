@@ -8,25 +8,25 @@ $def with (text,definitions)
 
     <div class="background">
         <div class="content">
-            <div id="wrapper">
-                <div class="header">
-                    <img src="static/logo.png" alt="logo">
-                </div>
+            <div class="header">
+                <img src="static/logo.png" alt="logo">
+            </div>
+
+            <div id="text">
                 $for i in text :
                     $for j in i :
                         $if j in definitions.keys() :
-                            <span class="hover">
-                            $j
-                            <span class="appear">$:definitions[j]</span>
-                            </span>
+                            <span class="hover">$j<span class="appear">$:definitions[j]</span></span>
                         $else :
                             $j
                     <br>
 
                 <form  action="clear">
-                    <input type="submit" value="Borrar" /></p>
+                    <input type="submit" value="Borrar" id="clear" /></p>
                 </form>
 
+            </div>
+            <div id="defs">
             </div>
         </div>
     </div>
