@@ -53,8 +53,8 @@ def web_format(content) :
 
 def def_format(definition) :
     formated = definition.replace(u'\n',u'<br>')
-    # definition = definition.replace('->','<h2>')
-    # definition = definition.replace('<-','</h2>')
+    formated = formated.replace('H2:','<b>')
+    formated = formated.replace(':2H','</b>')
     return formated
 
 
@@ -66,7 +66,7 @@ def process(content) :
             word = j.lower()
             # s = "SELECT times from bag where word = '" + word + "'"
             # count = db.query(s)
-            s = 'word = "{}"'.format(word)
+            s = u'word = "{}"'.format(word)
             count = db.select('bag',what='times',where=s)
             # print "COUNT:",count
             count = count.list()
@@ -81,8 +81,8 @@ def process(content) :
                         word_def = fetch[0]['def']
                         definitions[j] = def_format(word_def)
                         # print "DEFS:", repr(definitions[j])
-                    else :
-                        s = 'word = "{}"'.format(j)
+                    elif word != j :
+                        s = u'word = "{}"'.format(j)
                         fetch = db.select('dic',what='def',where=s)
                         fetch = fetch.list()
                         if fetch :

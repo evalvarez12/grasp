@@ -17,7 +17,7 @@ INDEX_LINES = '/home/eduardo/Trabajo/wikidumps/dumps/wiktionary-line-index.txt'
 
 
 DB_NAME = '/home/eduardo/Trabajo/grasp/src/source.db'
-
+count = 1
 indexes = subs.get_lines(ContsProc,INDEX_LINES,CORPUS)
 con = lite.connect(DB_NAME)
 with con :
@@ -41,6 +41,8 @@ with con :
 		if contents :
 		    s='INSERT INTO dic VALUES(' + '"' + title + '"'  + ',"' + contents + '")'
 		    cur.execute(s)
-	    except :
-		print "Error processing word: ",title
+	    except Exception as ex :
+		errmsg = u"Error #{0}. Type: {1}. On word: {2} "
+		print errmsg.format(count,ex.args,title)
+		count += 1
 		# 119 Error on last review

@@ -4,7 +4,7 @@ import subprocess
 import procs.spanish.lang as lang
 import procs.spanish.titles as titles
 
-SUBTITLE_TEMPLATE = 'H2:{}:2H'
+SUBTITLE_TEMPLATE = u'H2:{}:2H'
 
 def get_lines(CProc,index_file,corpus) :
     number_re = re.compile('\d+')
@@ -53,13 +53,15 @@ def get_contents(CProc,WProc,FProc,data) :
 			pass
 		    else :
 			joined = ' '.join(section_words)
+			joined = joined.title()
 			joined = SUBTITLE_TEMPLATE.format(joined)
 			contents = contents + joined + '\n'
-			#contents = contents + ' '.join(section_words) + '\n
+			#contents = contents + ' '.join(section_words) + '\n'
 			sec = CProc.get_contents(data,i)
 			contents = contents + WProc.clean_contents(sec) + '\n'
 		else :
 		    joined = ' '.join(section_words)
+		    joined = joined.title()
 		    joined = SUBTITLE_TEMPLATE.format(joined)
 		    contents = contents + joined + '\n'
 		    #contents = contents + ' '.join(section_words) + '\n'

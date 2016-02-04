@@ -110,7 +110,7 @@ textarea.animated:focus {
     background-color : #ffffff;
 
     outline: none !important;
-    border:2px solid #cccc00;
+    border:2px solid #000080;
     box-shadow: 0 0 10px #719ECE;
 
     -webkit-transition: 2s ease-in;
@@ -122,7 +122,7 @@ textarea.animated:focus {
 
 input[type="submit"] {
     padding:5px 10px;
-    background:#cc7a00;
+    background:#1a53ff;
     border: 0 none;
     box-shadow: 0 0 10px #595959;
     cursor:pointer;
