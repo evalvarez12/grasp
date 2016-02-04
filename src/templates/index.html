@@ -1,0 +1,37 @@
+$def with (content)
+<html>
+<head>
+    <link rel="stylesheet" href="static/css/box.css" type="text/css">
+    <title>Grasp</title>
+</head>
+<body>
+
+    <div class="background">
+        <div class="content">
+            <div class="header">
+                <img class="shadow-effect" src="static/logo.png" alt="logo">
+
+                <form mrthon="get" action="example">
+                    <input type="submit" id="example" value="?"/>
+                </form>
+            </div>
+
+
+
+            <div id="wrapper">
+
+                <form method="post" action="solve">
+                    <div class="overlay">
+                        <p><textarea class="animated"
+                            type="text"
+                            name="text"> </textarea>
+                        <input type="submit" value="Procesar" id="process" /></p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+.header {
+    width: 100%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    /*margin-bottom: 50px;*/
+}
+
+
+body {
+    font-size: 19px;
+    font-family: 'Orator Std';
+}
+
+.header img {
+    width: 220px;
+    height: 130px;
+    background-color: #ffffff;
+    opacity: 1;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+}
+
+
+span.appear {
+    width: 250px;
+    position: fixed;
+    top: 130px;
+    right: 0;
+    z-index: 12;
+    width:30%;
+    background-color: #cceeff;
+    box-shadow: 0 0 12px #006699;
+    opacity: 0;
+    height:100%;
+
+
+    -webkit-transition: 2s ease;
+    -ms-transition: 2s ease;
+    -moz-transition: 2s ease;
+    -o-transition: 2s ease;
+    transition: 2s ease;
+}
+
+
+
+span.hover  {
+    /*padding:1px 1px;*/
+    cursor:pointer;
+    /*width: 1px;*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 15px;
+    /*border:  #0099e6 1px solid;*/
+    box-shadow: 0 0 10px #80d5ff;
+    background: #99ddff;
+    z-index: 12;
+
+
+    -webkit-transition: 2s ease;
+    -ms-transition: 2s ease;
+    -moz-transition: 2s ease;
+    -o-transition: 2s ease;
+    transition: 2s ease;
+}
+
+span.hover:hover {
+    box-shadow: 0 0 12px #006699;
+}
+
+span.hover:hover span.appear {
+    opacity: 1;
+}
+
+#wrapper{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.background {
+    position:fixed;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+
+.background:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-image: url('../background.jpg');
+    opacity: 0.15;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    width : 100%;
+    height:100%;
+    overflow: auto;
+}​
+
+
+input[type="text"],
+textarea.animated {
+    background: url('../textarea.png')  no-repeat;
+    background-color : #ffffff;
+    width: 100%;
+    height: 600px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #666666;
+    resize: none;
+    overflow: auto;
+    font-size: 18px;
+    font-family: 'Orator Std';
+
+    -webkit-opacity: 0.7;
+    -moz-opacity: 0.7;
+    opacity: 0.7;
+
+    -webkit-backface-visibility: hidden;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    -webkit-transition: 2s ease-out;
+    -ms-transition: 2s ease-out;
+    -moz-transition: 2s ease-out;
+    -o-transition: 2s ease-out;
+    transition: 2s ease-out;
+}
+
+input[type="text"],
+textarea.animated:focus {
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    background: url('../blank.png') no-repeat;
+    background-color : #ffffff;
+
+    outline: none !important;
+    border:2px solid #99ddff;
+    box-shadow: 0 0 15px #719ECE;
+
+    -webkit-transition: 2s ease-in;
+    -ms-transition: 2s ease-in;
+    -moz-transition: 2s ease-in;
+    -o-transition: 2s ease-in;
+    transition: 2s ease-in;
+}
+
+input[type="submit"] {
+    padding:5px 10px;
+    background:#1a53ff;
+    border: 0 none;
+    box-shadow: 0 0 10px #595959;
+    cursor:pointer;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    font-family: 'Orator Std';
+    font-size: 20px;
+}
+
+div.overlay{
+    display:inline-block;
+    position:absolute;
+    margin-right: auto;
+    width: 70%;
+}
+
+#process {
+    position: absolute;
+    bottom: 16px;
+    right: 0px;
+}
+
+
+#example {
+    position: absolute;
+    top: 7px;
+    right: 3px;
+}
+
+#clear {
+    position: relative;
+    left: 10px;
+    top: 45px;
+}
+
+#text {
+    float: left;
+    width:70%;
+    height:100%;
+}
+
+#defs {
+    width:30%;
+    float: right;
+    background-color:#d9d9d9;
+    opacity: 0.6;
+    height:100%;
+    /*border: 1px solid #80d5ff;*/
+    box-shadow: 0 0 10px #999999;
+}
+
+/*
+.style-1 input[type="text"] {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.style-1 input[type="text"]:focus,
+.style-1 input[type="text"].focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}*/
+
+/*body {
+    background-image: url("paper.gif");
+}*/
+
+
+/*First methon cant get js to work*/
+/*.main {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.main .activator {
+    height: 200px;
+    width: 200px;
+    float: left;
+    display: block;
+}
+.img {
+    border: 1px solid maroon;
+    text-align: center;
+    margin: 15px;
+    height: 168px;
+    width: 168px;
+    float: left;
+}
+.content {
+    display: none;
+    margin: 15px;
+}
+.activator:hover {
+    width: 500px;
+}
+.activator:hover .content {
+    display: block;
+}
+.activator:hover .img {
+    float: left;
+}*/
+
+/*Second method*/

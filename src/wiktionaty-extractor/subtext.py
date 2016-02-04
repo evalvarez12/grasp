@@ -4,6 +4,7 @@ import subprocess
 import procs.spanish.lang as lang
 import procs.spanish.titles as titles
 
+SUBTITLE_TEMPLATE = u'H2:{}:2H'
 
 def get_lines(CProc,index_file,corpus) :
     number_re = re.compile('\d+')
@@ -14,22 +15,22 @@ def get_lines(CProc,index_file,corpus) :
 	    number_match = number_re.search(line_unicode)
 	    title = CProc.find_title(line_unicode)
 	    marks += [(int(number_match.group()),title)]
-	    
+
     proc = subprocess.Popen(["wc -l " + corpus],stdout=subprocess.PIPE, shell=True)
     (out, err) = proc.communicate()
     m = number_re.search(out)
     marks += [(int(m.group()),'')]
-    
+
     sub_texts = []
     for i in range(len(marks) - 1) :
 	start = marks[i][0]
 	end = marks[i+1][0] - 1
 	title = marks[i][1]
 	sub_texts += [(start,end,title)]
-	
-	
+
+
     return sub_texts
-	
+
 
 
 def get_contents(CProc,WProc,FProc,data) :
@@ -51,30 +52,34 @@ def get_contents(CProc,WProc,FProc,data) :
 		    except KeyError :
 			pass
 		    else :
-			contents = contents + ' '.join(section_words) + '\n'
+			joined = ' '.join(section_words)
+			joined = joined.title()
+			joined = SUBTITLE_TEMPLATE.format(joined)
+			contents = contents + joined + '\n'
+			#contents = contents + ' '.join(section_words) + '\n'
 			sec = CProc.get_contents(data,i)
 			contents = contents + WProc.clean_contents(sec) + '\n'
 		else :
-		    contents = contents + ' '.join(section_words) + '\n'
+		    joined = ' '.join(section_words)
+		    joined = joined.title()
+		    joined = SUBTITLE_TEMPLATE.format(joined)
+		    contents = contents + joined + '\n'
+		    #contents = contents + ' '.join(section_words) + '\n'
 		    sec = CProc.get_contents(data,i)
 		    contents = contents + WProc.clean_contents(sec) + '\n'
-	    
+
 	    #leng = [len(it) <= 3 for it in section_words]
 	    #if leng.count(True) == 1 :
 		#ind = leng.index(True)
 		#try :
 		    #section_words[ind] =  lang.LANGUAGES[section_words[ind]]
-		#except KeyError : 
+		#except KeyError :
 		    #section_words[ind] =  'Lengua desconocida'
 		#contents = contents + ' '.join(section_words) + '\n'
 		#sec = CProc.get_contents(data,i)
 
 		#contents = contents + WProc.clean_contents(sec) + '\n'
 
-	
+
     contents = FProc.clean(contents)
     return contents
-       
-
-    
-       

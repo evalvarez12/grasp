@@ -5,9 +5,9 @@ python:
   - "2.7"
 
 script: 
-  - python building/bagwords/extract_test.py
-  - python building/bagwords/db_test.py
-  - python building/bagwords/tree_test.py
-  - python building/wiktionaty-extractor/procs/words_test.py
-  - python building/wiktionaty-extractor/procs/formt_test.py
-  - python building/wiktionaty-extractor/procs/contents_test.py
+  - python src/bagwords/extract_test.py
+  - python src/bagwords/db_test.py
+  - python src/bagwords/tree_test.py
+  - python src/wiktionaty-extractor/procs/words_test.py
+  - python src/wiktionaty-extractor/procs/formt_test.py
+  - python src/wiktionaty-extractor/procs/contents_test.py
