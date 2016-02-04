@@ -29,7 +29,7 @@ span.appear {
     right: 0;
     z-index: 12;
     width:30%;
-    background-color: #4dc3ff;
+    background-color: #cceeff;
     box-shadow: 0 0 12px #006699;
     opacity: 0;
     height:100%;
@@ -73,7 +73,7 @@ span.hover:hover span.appear {
 }
 
 #wrapper{
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -147,8 +147,8 @@ textarea.animated:focus {
     background-color : #ffffff;
 
     outline: none !important;
-    border:2px solid #000080;
-    box-shadow: 0 0 10px #719ECE;
+    border:2px solid #99ddff;
+    box-shadow: 0 0 15px #719ECE;
 
     -webkit-transition: 2s ease-in;
     -ms-transition: 2s ease-in;
@@ -173,7 +173,7 @@ div.overlay{
     display:inline-block;
     position:absolute;
     margin-right: auto;
-    width: 60%;
+    width: 70%;
 }
 
 #process {
