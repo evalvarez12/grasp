@@ -204,11 +204,11 @@ div.overlay{
 #defs {
     width:30%;
     float: right;
-    background-color:#cceeff;
+    background-color:#d9d9d9;
     opacity: 0.6;
     height:100%;
     /*border: 1px solid #80d5ff;*/
-    box-shadow: 0 0 20px #80d5ff;
+    box-shadow: 0 0 10px #999999;
 }
 
 /*

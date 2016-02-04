@@ -4,7 +4,7 @@ import string
 import bagwords.extract as ext
 
 
-EXAMPLE_TEXT = u'Esto es un ejemplo de Grasp. \n Grasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas.\n Grasp esta alimentado por el Wikccionario(https://es.wiktionary.org) como fuente de las definiciones.'
+EXAMPLE_TEXT = u'Esto es un ejemplo del funcionamiento de Grasp. \n \nGrasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas para que puedas descrifrar el significado de cualquier texto, por rebuscado que este sea.\n Grasp usa el Wikccionario como fuente de las definiciones.'
 
 render = web.template.render('templates/')
 
