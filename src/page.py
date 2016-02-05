@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import web
+import os, sys
 import string
 import bagwords.extract as ext
 
@@ -10,9 +11,6 @@ if app_path:
 else: # CherryPy
     app_path = os.getcwd()
 
-app = web.application(urls, globals(), autoreload=False)
-application = app.wsgifunc()
-
 
 EXAMPLE_TEXT = u'Esto es un ejemplo del funcionamiento de Grasp, coloca el cursor sobre las palabras marcadas para ver su definición. \n \nGrasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas para que puedas descrifrar el significado de cualquier texto, por rebuscado que este sea.\n Grasp usa el Wikccionario como fuente de las definiciones.'
 
@@ -20,14 +18,15 @@ render = web.template.render('templates/')
 
 db = web.database(dbn='sqlite', db='static/source.db')
 
-# DEF_TEMPLATE =  string.Template(u'<span class="hover">$word<span class="appear">$def</span></span>')
-
 urls = (
     '/', 'index',
     '/solve', 'solve',
     '/clear', 'clear',
     '/example', 'example'
 )
+
+app = web.application(urls, globals(), autoreload=False)
+application = app.wsgifunc()
 
 class index():
     def GET(self):
