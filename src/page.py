@@ -2,7 +2,7 @@
 import web
 import os, sys
 import string
-import bagwords.extract as ext
+import re
 
 app_path = os.path.dirname(__file__)
 sys.path.append(app_path)
@@ -10,9 +10,6 @@ if app_path:
     os.chdir(app_path)
 else: # CherryPy
     app_path = os.getcwd()
-
-
-EXAMPLE_TEXT = u'Esto es un ejemplo del funcionamiento de Grasp, coloca el cursor sobre las palabras marcadas para ver su definición. \n \nGrasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas para que puedas descrifrar el significado de cualquier texto, por rebuscado que este sea.\n Grasp usa el Wikccionario como fuente de las definiciones.'
 
 render = web.template.render('templates/')
 
@@ -27,6 +24,10 @@ urls = (
 
 app = web.application(urls, globals(), autoreload=False)
 application = app.wsgifunc()
+
+EXAMPLE_TEXT = u'Esto es un ejemplo del funcionamiento de Grasp, coloca el cursor sobre las palabras marcadas para ver su definición. \n \nGrasp es un procesador de texto que identifica palabras extrañas o foráneas del Español y te provee con una definición de estas para que puedas descrifrar el significado de cualquier texto, por rebuscado que este sea.\n Grasp usa el Wikccionario como fuente de las definiciones.'
+words_re = re.compile(r'\b([^\W\d_]+)\b',re.UNICODE) #all character on unicode without digits and such
+
 
 class index():
     def GET(self):
@@ -52,12 +53,14 @@ class example :
         definitions = process(EXAMPLE_TEXT)
         return render.show(text,definitions)
 
+def process_line(data) :
+    return words_re.findall(data)
 
 def web_format(content) :
     lines = content.split('\n')
     result = []
     for i in lines :
-        result.append(ext.process_line(i))
+        result.append(process_line(i))
     return result
 
 def def_format(definition) :
