@@ -19,7 +19,6 @@ Input :
 
 Output :
 
-tado es el siguiente:
 
 	En informática, un núcleo o [[kernel]] (de la raíz [[germánica]] Kern, núcleo, hueso) es un software
 	que constituye una parte fundamental del sistema operativo.
